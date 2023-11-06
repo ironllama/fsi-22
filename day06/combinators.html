@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combinators</title>
+    <style>
+        /* div div div { */
+        /* .green,
+        .yellow { */
+        /* .one div,
+        .two div { */
+        .one>div,
+        .two>div {
+            display: inline-block;
+            width: 150px;
+            line-height: 150px;
+            text-align: center;
+            border: 1px solid chartreuse;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .one,
+        .two,
+        .three {
+            border: 1px solid purple;
+        }
+
+        .two {
+            /* height: unset; */
+        }
+
+        .car .wiper {
+            color: blue;
+        }
+
+        /* This does nothing, as windshield is a parent between car and wiper. */
+        .car>.wiper {
+            color: red;
+        }
+
+        .yellow~div {
+            background-color: gold;
+        }
+
+        .yellow+.yellow {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="one">
+            <div class="green">Apple</div>
+        </div>
+        <div class="two">
+            <div class="green">Pear</div>
+            <div class="yellow">Lemon</div>
+            <div class="yellow">Banana</div>
+            <div class="blue">Jackfruit</div>
+            <div class="yellow">Bigbird</div>
+        </div>
+        <div class="one">
+            <div class="yellow">Bisque</div>
+        </div>
+    </div>
+    <div class="car">
+        Vrrom
+        <p class="windshield">
+            clear
+            <span class="wiper">
+                squee
+            </span>
+        </p>
+    </div>
+</body>
+
+</html>

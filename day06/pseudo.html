@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            color: orangered;
+            background-color: black;
+        }
+
+        .outer {
+            width: 100%;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .glow {
+            display: inline-block;
+            margin-top: 30px;
+            width: 150px;
+            height: 50px;
+            line-height: 50px;
+            border: 1px solid orangered;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .glow:hover {
+            box-shadow: 0 0 20px 10px orangered;
+        }
+
+        .lower {
+            margin-left: 30px;
+            color: greenyellow;
+            border: 1px solid greenyellow;
+        }
+
+        .lower:hover {
+            box-shadow: 0 0 20px 10px greenyellow;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 30px;
+            cursor: url("happy-face-tug-boat-small.png"), pointer;
+        }
+
+        :link {
+            color: orangered;
+        }
+
+        :visited {
+            color: greenyellow;
+        }
+
+        :active {
+            color: pink;
+        }
+
+        .lower:first-child {
+            color: cyan;
+            border: 1px solid cyan;
+        }
+
+        .lower:last-child {
+            color: white;
+            border: 1px solid white;
+        }
+
+        .lower:nth-child(2) {
+            color: yellow;
+            border: 1px solid yellow;
+        }
+
+        /* div:nth-of-type(1) {
+            color: purple;
+            border: 1px solid purple;
+        } */
+
+        /* .glow:not(.big) {
+            background-color: bisque;
+        } */
+        svg {
+            display: block;
+            fill: greenyellow;
+        }
+
+        a:nth-child(7) {
+            display: block;
+            color: cornflowerblue;
+        }
+
+        a:nth-child(7)::after {
+            content: ' < Lies.';
+            color: red;
+            font-weight: bold;
+        }
+
+        a:nth-child(even) {
+            display: block;
+            background-color: grey;
+        }
+
+        a:nth-child(odd)::before {
+            content: '[SPECIAL!] ';
+        }
+
+        a:nth-last-of-type(2)::before {
+            content: '';
+            background: url("happy-face-tug-boat-small.png");
+            width: 24px;
+            height: 36px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <div class="glow">Push</div>
+        <div>
+            <div class="glow lower">One</div>
+            <div class="glow lower">Two</div>
+            <div class="glow lower">Three</div>
+        </div>
+        <div>
+            <div class="glow lower big">Four</div>
+        </div>
+        <div>
+            <div class="glow lower">Five</div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+            <path d="M0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM294.6 135.1l99.9 107.1c3.5 3.8 5.5 8.7 5.5 13.8s-2 10.1-5.5 13.8L294.6 376.9c-4.2 4.5-10.1 7.1-16.3 7.1C266 384 256 374 256 361.7l0-57.7-96 0c-17.7 0-32-14.3-32-32l0-32c0-17.7 14.3-32 32-32l96 0 0-57.7c0-12.3 10-22.3 22.3-22.3c6.2 0 12.1 2.6 16.3 7.1z" />
+        </svg>
+        <a href="http://nowere.com">Enter the Zone*</a>
+        <a href="http://nowere.com">Enter the Zone</a>
+        <a href="http://nowere.com">Enter the Zone</a>
+        <a href="http://nowere.com">Enter the Zone</a>
+        <a href="http://nowere.com">Enter the Zone</a>
+        <a href="http://nowere.com">Enter the Zone</a>
+        <a href="http://nowere.com">Enter the Zone</a>
+        <a href="http://nowere.com">Enter the Zone</a>
+        <a href="http://nowere.com">Enter the Zone</a>
+        <a href="http://nowere.com">Enter the Zone</a>
+    </div>
+</body>
+
+</html>
