@@ -56,28 +56,25 @@
             position: relative;
         }
 
+        /* =============== Language Options Dropdown START =============== */
+        /* To make the Language option something we can click on, we need to have
+        something trigger the appearance/disappearance of an options box. We
+        can have this binary interaction using a checkbox. However, we don't
+        want to actually see the checkbox, but just use it as a way to hold
+        state and to trigger other behavior based on the state (checked or
+        not checked) and use that to display or hide an options box. */
+
+        /* To hide the checkbox. */
         .navTopLeft>li:first-child>input {
             display: none;
         }
 
+        /* To show the options box when the checkbox is checked. */
         .navTopLeft>li:first-child>input:checked+.trickymenu {
             display: flex;
         }
 
-        .trickymenu::before {
-            content: '';
-            position: absolute;
-            top: -7px;
-            left: 45%;
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            background-color: white;
-            transform: rotate(45deg);
-            border-top: 1px solid darkgray;
-            border-left: 1px solid darkgray;
-        }
-
+        /* The options box. */
         .trickymenu {
             display: none;
             /* display: flex; */
@@ -92,6 +89,22 @@
             border: 1px solid darkgray;
         }
 
+        /* To add a little caret that points back to the Language trigger area.*/
+        .trickymenu::before {
+            content: '';
+            position: absolute;
+            top: -7px;
+            left: 45%;
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: white;
+            transform: rotate(45deg);
+            border-top: 1px solid darkgray;
+            border-left: 1px solid darkgray;
+        }
+
+        /* The options in the options box. */
         .trickymenu li:first-child {
             font-family: SpeedyBold;
         }
@@ -101,6 +114,8 @@
             font-weight: bold;
             margin-left: 2rem;
         }
+
+        /* =============== Language Options Dropdown END =============== */
 
         .navMain li,
         .navTopRight>div,
@@ -299,6 +314,7 @@
                                 <path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
                             </svg>
                         </label>
+                        <!-- The following is to add the Language Options Dropdown effect. -->
                         <input id="language" type="checkbox">
                         <ul class="trickymenu">
                             <li>English</li>
