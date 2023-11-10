@@ -1,0 +1,50 @@
+* {
+   box-sizing: border-box;
+}
+
+body {
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   color: #393939;
+   margin: 0;
+}
+
+h1,
+h2,
+p {
+   text-align: center;
+}
+
+h1 {
+   font-size: 4em;
+   margin: 3em 0 0;
+}
+
+h2 {
+   font-size: 2.5em;
+   text-decoration: overline;
+}
+
+p {
+   max-width: 600px;
+   font-size: 1.5em;
+   font-weight: 600;
+   margin: 4em auto;
+}
+
+/* YOUR CODE HERE */
+.button {
+   border: 2px solid #393939;
+   border-radius: 10px;
+   width: 200px;
+   height: 55px;
+   line-height: 50px;
+   text-align: center;
+   margin: 0 auto 5rem;
+   font-weight: bold;
+}
+
+.button:hover {
+   /* background: linear-gradient(#4CAF50, #45A049); */
+   background: linear-gradient(yellow, #45A049);
+   color: bisque;
+}

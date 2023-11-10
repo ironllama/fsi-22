@@ -1,0 +1,48 @@
+* {
+   box-sizing: border-box;
+}
+
+body {
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   margin: 0;
+}
+
+h1,
+h2 {
+   text-align: center;
+}
+
+h1 {
+   font-size: 5em;
+   margin: 3em 0 0;
+}
+
+h2 {
+   font-size: 2.5em;
+   text-decoration: overline;
+}
+
+.container {
+   height: 100vh;
+}
+
+.card {
+   width: 300px;
+   padding: 2rem;
+   border: 1px solid black;
+   border-radius: 10px;
+   margin: auto;
+}
+
+.card:hover {
+   background: conic-gradient(purple, yellow, purple);
+}
+
+.card button {
+   margin-top: 2rem;
+   padding: 1rem 2rem;
+   border: none;
+   border-radius: 3px;
+   background-color: yellow;
+   font-weight: bold;
+}

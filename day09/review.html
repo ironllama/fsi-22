@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review</title>
+    <style>
+        body>div {
+            margin-bottom: 50px;
+        }
+
+        .inlined div {
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            vertical-align: bottom;
+        }
+
+        .flexed {
+            display: flex;
+            /* width: 450px; */
+        }
+
+        .flexed>div {
+            width: 150px;
+            height: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="inlined">
+        Inlinyd
+        <div style="background-color: bisque;"></div>
+        <div style="background-color: chartreuse;"></div>
+        <div style="background-color: darkorange;"></div>
+    </div>
+
+    <div class="flexed">
+        Flexed
+        <div style="background-color: bisque;"></div>
+        <div style="background-color: chartreuse;"></div>
+        <div style="background-color: darkorange;"></div>
+    </div>
+
+    <style>
+        .morecontent div {
+            display: inline-block;
+            width: 200px;
+            height: 150px;
+            background-color: plum;
+        }
+
+        .morecontent span {
+            background-color: orange;
+        }
+
+        .morecontent div:first-child,
+        .morecontent div:nth-child(2) {
+            margin-bottom: 4px;
+        }
+    </style>
+    <div class="morecontent">
+        <div><span>Oh boy. Today I came to wcoding and I really regret that decision at this moment. The end.</span></div>
+        <div><span>Oh boy. Today I came to wcoding and I really regret that decision at this moment. The end.</span></div>
+        <br>
+        <div><span>Oh boy. Today I came to wcoding and I really regret that decision at this moment. The end.</span></div>
+        <div><span>Oh boy. Today I came to wcoding and I really regret that decision at this moment. The end.</span></div>
+    </div>
+
+    <style>
+        .morecontent2 {
+            /* margin-left: -2px; */
+        }
+
+        .row {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 4px;
+        }
+
+        .row div {
+            width: 200px;
+            height: 150px;
+            background-color: plum;
+            /* margin: 2px; */
+        }
+
+        .row span {
+            background-color: orange;
+        }
+    </style>
+    <div class="morecontent2">
+        <div class="row">
+            <div><span>Oh boy. Today I came to wcoding and I really regret that decision at this moment. The end.</span></div>
+            <div><span>Oh boy. Today I came to wcoding and I really regret that decision at this moment. The end.</span></div>
+        </div>
+        <div class="row">
+            <div><span>Oh boy. Today I came to wcoding and I really regret that decision at this moment. The end.</span></div>
+            <div><span>Oh boy. Today I came to wcoding and I really regret that decision at this moment. The end.</span></div>
+        </div>
+    </div>
+
+    <style>
+        .morecontent3 {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: flex-end;
+            width: 604px;
+            height: 600px;
+            /* gap: 4px; */
+            outline: 1px dotted red;
+        }
+
+        .morecontent3 div {
+            width: 200px;
+            height: 150px;
+            background-color: plum;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+
+        .morecontent3 div:nth-child(2) {
+            justify-content: flex-end;
+            align-content: flex-end;
+        }
+
+        .morecontent3 span {
+            background-color: orange;
+            align-self: flex-start;
+        }
+    </style>
+    <div class="morecontent3">
+        <div>
+            <span>Oh boy.</span>
+            <span>Today</span>
+            <span>I came to</span>
+            <span>wcoding</span>
+            <span>and I really</span>
+            <span>regret</span>
+            <span>that</span>
+            <span>decision at this moment.</span>
+            <span>The end.</span>
+        </div>
+        <div>
+            <span>Oh boy.</span>
+            <span>Today</span>
+            <span>I came to</span>
+            <span>wcoding</span>
+            <span>and I really</span>
+            <span>regret</span>
+            <span>that</span>
+            <span>decision at this moment.</span>
+            <span>The end.</span>
+        </div>
+        <div>
+            <span>Oh boy.</span>
+            <span>Today</span>
+            <span>I came to</span>
+            <span>wcoding</span>
+            <span>and I really</span>
+            <span>regret</span>
+            <span>that</span>
+            <span>decision at this moment.</span>
+            <span>The end.</span>
+        </div>
+        <div>
+            <span>Oh boy.</span>
+            <span>Today</span>
+            <span>I came to</span>
+            <span>wcoding</span>
+            <span>and I really</span>
+            <span>regret</span>
+            <span>that</span>
+            <span>decision at this moment.</span>
+            <span>The end.</span>
+        </div>
+    </div>
+
+
+    <style>
+        .findme div {
+            width: 100px;
+            height: 100px;
+        }
+
+        .large {
+            width: 300px;
+            height: 300px;
+            outline: 3px solid green;
+        }
+    </style>
+    <div class="findme">
+        <div style="background-color: khaki;"></div>
+        <div class="large" style="background-color: blueviolet;"></div>
+    </div>
+
+    <style>
+        .bigfamily div {
+            height: 100px;
+            width: 100px;
+            background-color: bisque;
+        }
+
+        div.bigfamily div div div div div div div div div div div {
+            background-color: hotpink;
+        }
+
+        .bigfamily .deep {
+            background-color: olive;
+        }
+    </style>
+    <div class="bigfamily">
+        <div>
+            <div>
+                <div>
+                    <div>
+                        <div>
+                            <div>
+                                <div>
+                                    <div>
+                                        <div>
+                                            <div>
+                                                <div>
+                                                    <div class="deep">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
