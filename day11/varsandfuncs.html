@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vars and Funcs</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: cornflowerblue;
+        }
+
+        .popup {
+            position: absolute;
+            width: 300px;
+            height: 25vh;
+            /* height: max(200px, 50vh); */
+            /* max-height: 50vh; */
+            top: calc(50vh - calc(200px * 0.5));
+            left: calc(50vw - calc(300px * 0.5));
+            background-color: white;
+            border-radius: 5px;
+            padding: 2rem;
+            text-align: center;
+            /* line-height: 200px; */
+            font-weight: bold;
+            /* font-size: 10vh; */
+            font-size: clamp(1rem, 10vh, 2rem);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="popup">Hello, there!</div>
+</body>
+
+</html>

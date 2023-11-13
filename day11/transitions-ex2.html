@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise Clock</title>
+
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        .container {
+            height: 100vh;
+            position: relative;
+            transform: rotate(-0.25turn);
+        }
+
+        .clock {
+            border: 1px solid;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .seconds {
+            position: relative;
+            left: 50%;
+            margin-left: 0;
+            background-color: red;
+            height: 3px;
+            top: 43%;
+            width: 50%;
+        }
+
+        .minutes {
+            position: relative;
+            left: 50%;
+            margin-left: 0;
+            background-color: blue;
+            height: 3px;
+            top: 45%;
+            width: 40%;
+        }
+
+        .hours {
+            position: relative;
+            background-color: black;
+            height: 5px;
+            left: 50%;
+            margin-left: 0%;
+            top: 48%;
+            width: 30%;
+        }
+
+        .clock>hr {
+            /* Number of seconds in a day = 86400 / 2 rotations around a clock */
+            /* transition: 43200s linear; */
+            transition: calc(60s * 60 * 12) linear;
+            transform-origin: top left;
+        }
+
+        .clock:hover .seconds {
+            /* Complete rotations per 12hrs = 1min * 60min/hr * 12hr/rot * 360deg */
+            /* transform: rotate(calc(360deg * 60 * 12)) translateY(-50%); */
+            transform: rotate(calc(1turn * 60 * 12)) translateY(-50%);
+        }
+
+        .clock:hover .minutes {
+            /* Complete rotations per day = 1hr * 12hr/rot * 360deg */
+            transform: rotate(calc(1turn * 12)) translateY(-50%);
+        }
+
+        .clock:hover .hours {
+            /* Complete rotations per day = 1rotations * 360deg */
+            transform: rotate(1turn) translateY(-50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="clock">
+            <hr class="hours" />
+            <hr class="minutes" />
+            <hr class="seconds" />
+        </div>
+    </div>
+</body>
+
+</html>
