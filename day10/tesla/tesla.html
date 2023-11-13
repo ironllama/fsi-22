@@ -145,8 +145,12 @@
             display: none;
         }
 
-        .navCenter:has(~ .navRight #mobileMenu:clicked) {
+        .navCenter:has(~ .navRight #mobileMenu:checked) {
             display: block;
+        }
+
+        .navCenter:has(~ .navRight #mobileMenu:checked) .navDesktop {
+            display: flex;
         }
 
         .first {
@@ -200,6 +204,10 @@
                 padding: 0 3.2rem;
             }
 
+            .navItems {
+                margin-top: 2rem;
+            }
+
             .banner {
                 justify-content: center;
                 align-items: center;
@@ -212,14 +220,32 @@
                 font-size: 1.7rem;
             }
 
-            .navDesktop {
-                display: inline-block;
+            .navCenter {
+                position: static;
+                width: fit-content;
+                height: fit-content;
+                background-color: transparent;
+                color: white;
+                display: flex;
             }
 
-            .navCenter {
+            .navCenter>label {
+                display: none;
+            }
+
+            .navDesktop {
                 display: flex;
+                flex-direction: row;
+                align-items: center;
+                margin: 0;
+                padding: 0;
                 gap: 3rem;
                 font-size: 1.4rem;
+            }
+
+            .navDesktop li::after {
+                width: 0;
+                height: 0;
             }
 
             .menuButton {
