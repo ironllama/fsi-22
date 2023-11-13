@@ -156,13 +156,23 @@
         .first {
             height: 100vh;
             width: 100vw;
-            background-image: url("Homepage-Model-Y-Desktop-Poster-NA.avif");
-            background-size: cover;
-            background-position: -600px 0;
+            /* background-image: url("Homepage-Model-Y-Desktop-Poster-NA.avif"); */
+            /* background-size: cover; */
+            /* background-position: -600px 0; */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
+        }
+
+        .first video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -10;
         }
 
         .first header h1 {
@@ -319,6 +329,9 @@
         </div>
     </nav>
     <section class="first">
+        <video playsinline autoplay muted loop poster="Homepage-Model-Y-Desktop-Poster-NA.avif">
+            <source src="Homepage-Model-Y-Desktop-NA.mp4">
+        </video>
         <header>
             <h1>Model Y</h1>
             <p>Lease starting at $399/mo*</p>
