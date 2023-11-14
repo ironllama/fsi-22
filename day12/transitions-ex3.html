@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 1</title>
+
+    <style>
+        .container {
+            width: 80%;
+            margin: 100px auto;
+            padding-bottom: 50px;
+            border-bottom: 1px solid gray;
+        }
+
+        .text {
+            font-size: 30px;
+        }
+
+        .square {
+            width: 150px;
+            height: 150px;
+            border: 1px solid black;
+            background-color: black;
+        }
+
+        .basketball {
+            width: 100px;
+        }
+
+        .basketball-net {
+            width: 200px;
+            float: right;
+        }
+
+        .container:nth-child(1) {
+            overflow: hidden;
+        }
+
+        .container:nth-child(1)>div>span {
+            display: inline-block;
+            transform: translateX(calc(100vh + 500px));
+            animation: scroll 24s linear infinite;
+        }
+
+        @keyframes scroll {
+            to {
+                transform: translateX(-500px);
+            }
+        }
+
+        .square {
+            background-image: linear-gradient(red, orange, yellow, green, blue, indigo);
+        }
+
+        .basketball {
+            animation: 1s ease-out alternate forwards 6 bounce, 1s ease-in 6s shootup, 1s ease-out 7s shootdown;
+            /* transform: translateY(-100px); */
+            transform: translateY(50px);
+            /* transform: translate(777px, 50px); */
+        }
+
+        .basketball-net {
+            float: none;
+            transform: translateX(800px);
+        }
+
+        @keyframes bounce {
+            to {
+                transform: translateY(-100px);
+            }
+        }
+
+        @keyframes shootup {
+            to {
+                transform: translate(500px, -400px);
+            }
+        }
+
+        @keyframes shootdown {
+            0% {
+                transform: translate(500px, -400px);
+            }
+
+            90% {
+                transform: translate(1000px, -110px);
+            }
+
+            100% {
+                transform: translate(954px, 50px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- is a marquee -->
+        <div>
+            <marquee><span class="text">hello I'm a marquee!</span></marquee>
+        </div>
+
+        <!-- please make me behave the same or better than a marquee! -->
+        <div>
+            <span class="text">Make me at least as good as him!</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- I want to have all the color of the rainbow ! -->
+        <div class="square"></div>
+    </div>
+
+    <div class="container">
+        <!-- Make me bounce on the "ground" -->
+        <img class="basketball" src="https://svgsilh.com/svg/309539.svg" alt="basketball" />
+        <!-- BONUS: If you can, make me go into through net -->
+        <img class="basketball-net" src="https://svgsilh.com/svg/157846.svg" alt="basketball net" />
+    </div>
+</body>
+
+</html>

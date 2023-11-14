@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="sunrise-alex.css">
+    <title>Sunrise</title>
+</head>
+
+<body>
+    <div id="stars">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+    </div>
+    <div id="celestials">
+        <div id="sun"></div>
+        <div id="moon"></div>
+    </div>
+    <div id="ground">
+        <div id="boat">
+            <div id="mast"></div>
+            <div id="sail"></div>
+        </div>
+        <svg width="100%" height="100%" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" overflow="auto" shape-rendering="auto" fill="#ffffff">
+            <defs>
+                <path id="wavepath" d="M 0 2000 0 500 Q 89 436 178 500 t 178 0 178 0 178 0 178 0 178 0 178 0 178 0  v1000 z" />
+                <path id="motionpath" d="M -356 0 0 0" />
+            </defs>
+            <g>
+                <use xlink:href="#wavepath" y="-64" fill="#001d38">
+                    <animateMotion dur="5s" repeatCount="indefinite">
+                        <mpath xlink:href="#motionpath" />
+                    </animateMotion>
+                </use>
+            </g>
+        </svg>
+        <svg width="100%" height="100%" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" overflow="auto" shape-rendering="auto" fill="#ffffff">
+            <defs>
+                <path id="wavepath2" d="M 0 2000 0 500 Q 70.5 412 141 500 t 141 0 141 0 141 0 141 0 141 0 141 0 141 0 141 0 141 0  v1000 z" />
+                <path id="motionpath2" d="M -282 0 0 0" />
+            </defs>
+            <g>
+                <use xlink:href="#wavepath2" y="50" fill="#2e689e">
+                    <animateMotion dur="5s" repeatCount="indefinite">
+                        <mpath xlink:href="#motionpath2" />
+                    </animateMotion>
+                </use>
+            </g>
+        </svg>
+        <svg width="100%" height="100%" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" overflow="auto" shape-rendering="auto" fill="#ffffff">
+            <defs>
+                <path id="wavepath3" d="M 0 2000 0 500 Q 38 457 76 500 t 76 0 76 0 76 0 76 0 76 0 76 0 76 0 76 0 76 0 76 0 76 0 76 0 76 0 76 0 76 0  v1000 z" />
+                <path id="motionpath3" d="M -152 0 0 0" />
+            </defs>
+            <g>
+                <use xlink:href="#wavepath3" y="350" fill="#a3b8cc">
+                    <animateMotion dur="5s" repeatCount="indefinite">
+                        <mpath xlink:href="#motionpath3" />
+                    </animateMotion>
+                </use>
+            </g>
+        </svg>
+    </div>
+    <div id="content">
+        Endless Summer <div class="daynight night">Nights</div>
+        <div class="daynight day">Days</div>
+    </div>
+</body>
+
+</html>
