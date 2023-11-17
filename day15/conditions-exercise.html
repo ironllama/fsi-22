@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conditions</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+    // Declare two new variables that contain numbers
+    // Create a if condition that displays a message if the first variable is larger than 10
+    // Otherwise display another message
+    const first = 12;
+    const second = 24;
+    if (first > 10) console.log("First is greater than 10.");
+    else console.log("First is less than or equal to 10.");
+
+    // Create an if condition that will display the largest of the two numbers
+    if (first > second) console.log("First is greater.");
+    else if (second > first) console.log("Second is greater.");
+    else console.log("They are equal.");
+
+    // Declare 5 new variables that contain numbers
+    const uno = 34;
+    const dos = 92;
+    const tres = 17;
+    const quat = 21;
+    const cinco = 40;
+
+    // Test and find the largest number of the 5
+    let largestOf5 = uno;
+    if (dos > largestOf5) largestOf5 = dos;
+    if (tres > largestOf5) largestOf5 = tres;
+    if (quat > largestOf5) largestOf5 = quat;
+    if (cinco > largestOf5) largestOf5 = cinco;
+    console.log("The largest of the 5 is " + largestOf5);
+
+    // Test each of the 5 variables and display whether the number is even or odd
+    if (uno % 2 === 0) console.log(uno + " is Even");
+    else console.log(uno + " is Odd.");
+    if (dos % 2 === 0) console.log(dos + " is Even");
+    else console.log(dos + " is Odd.");
+    if (tres % 2 === 0) console.log(tres + " is Even");
+    else console.log(tres + " is Odd.");
+    if (quat % 2 === 0) console.log(quat + " is Even");
+    else console.log(quat + " is Odd.");
+    if (cinco % 2 === 0) console.log(`${cinco} is Even`);  // Create the output string w/ template literal.
+    else console.log(`${cinco} is Odd.`);
+
+
+    // Test each of the 5 variables and display if a number can be divided by 5 or 8
+    if (uno % 5 === 0 || uno % 8 === 0) console.log(`${uno} is wholly divisible by 5 or 8.`);
+    else console.log(`${uno} is NOT wholly divisible by 5 or 8`);
+    if (dos % 5 === 0 || dos % 8 === 0) console.log(`${dos} is wholly divisible by 5 or 8.`);
+    else console.log(`${dos} is NOT wholly divisible by 5 or 8`);
+    if (tres % 5 === 0 || tres % 8 === 0) console.log(`${tres} is wholly divisible by 5 or 8.`);
+    else console.log(`${tres} is NOT wholly divisible by 5 or 8`);
+    if (quat % 5 === 0 || quat % 8 === 0) console.log(`${quat} is wholly divisible by 5 or 8.`);
+    else console.log(`${quat} is NOT wholly divisible by 5 or 8`);
+    if (cinco % 5 === 0 || cinco % 8 === 0) console.log(`${cinco} is wholly divisible by 5 or 8.`);
+    else console.log(`${cinco} is NOT wholly divisible by 5 or 8`);
+
+    // BONUS
+    // Create a switch condition that will return the number of days in a given month
+    let userMonth = prompt("Enter a month by number [1-12]:");
+
+    switch (userMonth) {
+      case "2":
+        console.log(`Month ${userMonth} has 28 days.`);
+        break;
+      case "4":
+      case "6":
+      case "9":
+      case "11":
+        console.log(`Month ${userMonth} has 30 days.`);
+        break;
+      default:
+        console.log(`Month ${userMonth} has 31 days.`);
+        break;
+    }
+
+    // Create two new numeric variables, then create a switch that will do a calculation
+    // between two variable for the operators +, -, *, /
+    const operUno = Math.ceil(Math.random() * 10);
+    const operDos = Math.ceil(Math.random() * 10);
+
+    const operUser = prompt("Enter an operation [+, -, *, /]:");
+
+    // Use of eval. DANGEROUS online. AVOID.
+    // console.log(`${operUno} ${operUser} ${operDos} = ${eval(operUno + operUser + operDos)}`);
+
+    let outputStr = `${operUno} ${operUser} ${operDos} = `;
+    switch (operUser) {
+      case '+':
+        outputStr += operUno + operDos;
+        break;
+      case '-':
+        outputStr += operUno - operDos;
+        break;
+      case '*':
+        outputStr += operUno * operDos;
+        break;
+      case '/':
+        outputStr += operUno / operDos;
+        break;
+    }
+    console.log(outputStr);
+
+    // Create a variable for a number of electricity usage units in WattHrs.
+    let userWattHrs = prompt("Enter the number of wattHrs used.");
+    const origWattHrs = userWattHrs;  // Just for the output at the end.
+    userWattHrs = parseInt(userWattHrs);  // We're going to gradually reduce this as we calculate each tier.
+
+    let totalCost = 0;  // Running total.
+
+    if (userWattHrs >= 50) {  // Define the range for this tier.
+      let tierAmt = userWattHrs * 0.5;  // Assume that there less than the tier limit.
+      if (userWattHrs > 50) {  // But, if there is more left than the tier covers, then take the max for tier.
+        tierAmt = 50 * 0.5;
+      }
+      console.log("First tier added", tierAmt);
+      totalCost += tierAmt;  // Add this tier's contribution to the total.
+      userWattHrs -= 50;  // Remove this tier's amount from the total usage.
+    }
+
+    if (userWattHrs > 0 && userWattHrs >= 100) {
+      let tierAmt = userWattHrs * 0.75;
+      if (userWattHrs > 100) {
+        tierAmt = 100 * 0.75;
+      }
+      console.log("Second tier added", tierAmt);
+      totalCost += tierAmt;
+      userWattHrs -= 100;
+    }
+
+    if (userWattHrs > 0 && userWattHrs >= 100) {
+      let tierAmt = userWattHrs * 1.2;
+      if (userWattHrs > 100) {
+        tierAmt = 100 * 1.2;
+      }
+      console.log("Third tier added", tierAmt);
+      totalCost += tierAmt;
+      userWattHrs -= 100;
+    }
+
+    if (userWattHrs > 0) {
+      const tierAmt = userWattHrs * 1.5;
+      console.log("Fourth tier added", tierAmt);
+      totalCost += tierAmt;
+    }
+
+    totalCost *= 1.2;
+    console.log(`For ${origWattHrs}, your final cost:`, totalCost); // Automatically add a space between printed elements, by listing them.
+
+    // Calculate the electricity bill for the number of WattHrs, following these instructions:
+    // For the first tier, the first 50 WattHrs the cost is 0.50/WattHrs
+    // For the second tier, the next 100 WattHrs is 0.75/WattHrs
+    // For the third tier, the next 100 WattHrs is 1.20/WattHrs
+    // And for the fourth tier, all the WattHrs above the first 250 is 1.50/WattHrs
+    // Then add an additional 20% surcharge to the final cost
+    // Print out the final cost.
+    // Print out each tier's contribution to the final cost, but only if it contributes to the final cost.
+  </script>
+</body>
+
+</html>

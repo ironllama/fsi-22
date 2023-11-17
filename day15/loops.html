@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops</title>
+</head>
+
+<body>
+    <script>
+        // console.log(1);
+        // console.log(2);
+        // console.log(3);
+        // console.log(4);
+        // console.log(5);
+        // console.log(6);
+        // console.log(7);
+        // console.log(8);
+        // console.log(9);
+        // console.log(10);
+
+        // General syntax for while loop.
+        // while (condition) statement;
+        // while (condition) {
+        //     statement1;
+        //     statement2;
+        // }
+
+        // Prints 0-9
+        // let idx = 0;
+        // while (idx < 10) {
+        //     console.log(idx);
+        //     idx += 1;
+        // }
+
+        // Prints 1-10
+        // let idx = 0;
+        // while (idx < 10) {
+        //     idx += 1;
+        //     console.log(idx);
+        // }
+        // let idx = 0;
+        // while (idx < 10) console.log(++idx);
+
+        // Prints 1-10
+        // let idx = 1;
+        // while (idx <= 10) {
+        //     console.log(idx);
+        //     // idx += 1;
+        //     idx = idx + 1;  // Same as above.
+        // }
+
+        // General syntax for do-while loop.
+        // do statement;
+        // while (condition);
+        // do {
+        //     statement1;
+        //     statement2;
+        // }
+        // while (condition);
+
+        // let idxWhile = 11;
+        // while (idxWhile < 10) {
+        //     console.log("While: ", idxWhile);
+        //     idxWhile += 1;
+        // }
+
+        // let idxDoWhile = 11;
+        // do {
+        //     console.log("DoWhile:", idxDoWhile);
+        //     idxDoWhile += 1;
+        // }
+        // while (idxDoWhile < 10);
+
+
+        // General Syntax of For loop.
+        // for (execute before loop; test at beg of loop; execute at end of loop) statement;
+        // for (init iter; condition; change iter) statement;
+        // for (init iter; condition; change iter) {
+        //     statement1;
+        //     statement2;
+        // }
+
+        // let idx = 0;
+        // while (idx < 10) {
+        //     console.log(idx);
+        //     idx += 1;
+        // }
+        // Same as while loop, above.
+        // for (let idx = 0; idx < 10; idx += 1) {
+        //     console.log(idx);
+        // }
+        // for (let idx = 0; idx < 10; console.log(++idx));  // Also works. Don't do this.
+
+        // let userName = prompt("Say my name.");
+        // while (userName !== "Alex") {
+        //     userName = prompt("Say my name.");
+        // }
+
+        // UGLY.
+        // let userName = prompt("Say my name.");
+        // for (;userName != "Alex";) {
+        //     userName = prompt("Say my name.");
+        // }
+
+        // SO DAMN UGLY.
+        // for (let userName = prompt("Say my name."); userName !== "Alex"; userName = prompt("Say my name."));
+
+        // Infinite loops! (If you REALLY want to use one.)
+        // while(true) {}
+        // for(;true;) {}
+        // for(;;) {}
+
+        // let num = 0;
+        // while (num < 100) {
+        //     num += 1;  // To make sure the continue doesn't produce an infinite loop.
+        //     if (num == 5) continue;  // continue skips the rest of the loop and retests.
+        //     console.log("So far:", num);
+        //     if (num == 10) break;  // break ends the loop prematurely.
+        // }
+
+        // for (let num = 0; num < 100; num++) {
+        //     if (num == 5) continue;  // continue skips the rest of the loop and retests.
+        //     console.log("So far:", num);
+        //     if (num == 10) break;  // break ends the loop prematurely.
+        // }
+
+        // Early terminate the loop at [2][2]
+        for (let x = 0; x < 10; x++) {
+            var earlyBreak = false;  // A flag to be used by the inner loop as a signal to stop.
+
+            for (let y = 0; y < 10; y++) {
+                console.log("You are at [", x, "][", y, "]");
+                if (x === 2 && y === 2) {
+                    earlyBreak = true;  // Set the flag.
+                    break;  // Only breaks the immediately enclosing loop.
+                }
+            }
+
+            if (earlyBreak) break;  // If flag is set, then stop.
+        }
+
+        // Labelled loops.
+        banana:
+        for (let x = 0; x < 10; x++) {
+            for (let y = 0; y < 10; y++) {
+                console.log("You are at [", x, "][", y, "]");
+                if (x === 2 && y === 2) break banana;
+            }
+        }
+    </script>
+</body>
+
+</html>
