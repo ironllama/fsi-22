@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidden Checkbox</title>
+    <style>
+        body {
+            background-color: bisque;
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 2rem;
+            margin: 0;
+            height: 100vh;
+        }
+
+        main {
+            height: 100%;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            box-sizing: border-box;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 2rem;
+            background-color: antiquewhite;
+            display: flex;
+            align-items: center;
+        }
+
+        nav img {
+            width: 75px;
+        }
+
+        .inventory {
+            display: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 300px;
+            padding: 5rem 2rem 2rem;
+            background-color: white;
+        }
+
+        .inventory .closehitbox {
+            position: absolute;
+            top: 0.6rem;
+            right: 2rem;
+            width: 3rem;
+        }
+
+        .inventory ul,
+        li {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            font-size: 1.1rem;
+        }
+
+        .inventory ul {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        #sidenav:checked~.inventory {
+            display: block;
+        }
+
+        nav input {
+            display: none;
+        }
+
+        nav label div {
+            width: 75px;
+            text-align: right;
+        }
+
+        section {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        section:nth-of-type(2) {
+            background-color: burlywood;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <img src="Batman-Logo.png">
+
+        <input id="sidenav" type="checkbox">
+        <div class="inventory">
+            <label for="sidenav">
+                <div class="closehitbox">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                    </svg>
+                </div>
+            </label>
+            <ul>
+                <li>One</li>
+                <li>Two</li>
+                <li>Three</li>
+                <li>Four</li>
+            </ul>
+        </div>
+
+        <label for="sidenav">
+            <div class="openhitbox">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                    <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+                </svg>
+            </div>
+        </label>
+    </nav>
+    <main>
+        <section>One</section>
+        <section>Two</section>
+    </main>
+</body>
+
+</html>
