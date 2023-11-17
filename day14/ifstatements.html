@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditions</title>
+</head>
+
+<body>
+    <script>
+
+        // Just an If condition statement.
+        // if (condition) statement;
+        // OR
+        // if (condition) {
+        //     statement;
+        //     statement;
+        // }
+
+        // An If condition statement w/ an else statement.
+        // if (condition) statement;
+        // else statement;
+        // OR
+        // if (condition) {
+        //     statement;
+        //     statement;
+        // }
+        // else {
+        //     statement;
+        //     statement;
+        // }
+
+        // if (condition1) statement1;
+        // if (condition2) statement2;
+
+        // if (condition1) statement1;
+        // else if (condition2) statement2;
+
+        let birthYear = prompt("What year were you born?");
+        birthYear = parseInt(birthYear);
+
+        let koreanAge = 2023 - birthYear + 1;
+        console.log("In Korean age, you are: " + koreanAge + " years old.");
+
+        if (koreanAge < 30) {
+            console.log("When are you are going to get married?");
+        }
+        else {
+            if (koreanAge < 40) {
+                console.log("Why aren't your married, yet?");
+            }
+            else {
+                if (koreanAge < 50) {
+                    console.log("We love you, anyway.");
+                }
+                else {
+                    console.log("Let's play baduk.");
+                }
+            }
+        }
+
+        // if (koreanAge < 30) console.log("When are you are going to get married?");
+        // else if (koreanAge < 40) console.log("Why aren't your married, yet?");
+        // else if (koreanAge < 50) console.log("We love you, anyway.");
+        // else console.log("Let's play baduk.");
+
+        // SWITCH
+
+        // switch (koreanAge) {
+        //     case 20:
+        //     case 21:
+        //     case 22:
+        //     case 23:
+        //     case 24:
+        //     case 25:
+        //         console.log("You are a good age!");
+        //         break;
+        //     case 35:
+        //         console.log("You are a the perfect age!");
+        //         break;
+        //     case 45:
+        //         console.log("You are an ok age!");
+        //         break;
+        //     default:
+        //         console.log("It's over.");
+        // }
+
+        // switch (true) {
+        //     case koreanAge < 35:
+        //         console.log("You are a good age!");
+        //         break;
+        //     case koreanAge < 45:
+        //         console.log("You are a the perfect age!");
+        //         break;
+        //     case koreanAge < 55:
+        //         console.log("You are an ok age!");
+        //         break;
+        //     default:
+        //         console.log("It's over.");
+        // }
+
+        // TERNARY: (condition) ? statement(if true) : statement(if false);
+        // (koreanAge < 35)
+        //     ? console.log("You are a good age!")
+        //     : (koreanAge < 45)
+        //         ? console.log("You are the perfect age.")
+        //         : (korean < 55)
+        //             ? console.log("You are an ok age!")
+        //             : console.log("It's over.");
+
+        // LOGICAL BOOLEANS -- Do not do this.
+        // (koreanAge < 35 && (console.log("You are a good age!") || true))
+        //     || (koreanAge < 45 && (console.log("You are the perfect age.") || true))
+        //     || (koreanAge < 55 && (console.log("You are an ok age!") || true))
+        //     || console.log("It's over.");
+
+    </script>
+</body>
+
+</html>
