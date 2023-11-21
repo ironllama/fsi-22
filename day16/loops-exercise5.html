@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <pre>
+        1. At the beginning, we have $1000
+        Loop:
+        2. We choose a number to bet on (1 ~ 36)
+
+        3. We decide an amount of money to bet (1 ~ currentMoney)
+
+        4. We generate a random number between 0 ~ 36
+
+        5. Check IF winner:
+            a. Same number -> multiply bet * 36;
+            b. If both ODD or both EVEN -> multiply bet * 2
+            c. Otherwise we lose the bet
+
+        6. We add or subtract the money, as needed
+            a. If we run out of money, game is over.
+
+        7. Ask the player if they want to continue
+    </pre>
+    <script>
+        let allMonies = 1000;  // All our money!
+        console.log(`Welcome to Frogcoin Casino. Here are ${allMonies} chips for your $${allMonies}!`);
+
+        while (true) {
+            // Make sure bet number is within the range of valid inputs. (1 <= n <= 36)
+            let betNum = -1;  // Set to -1 to force entering loop
+            while (betNum < 1 || betNum >= 36 || isNaN(betNum)) {
+                betNum = parseInt(prompt("On which number would you like to bet?"));
+            }
+
+            // Make sure the bet amount is within the range of valid inputs. (0 <= n <= allMonies)
+            let betAmt = -1;
+            while (betAmt < 0 || betAmt > allMonies || isNaN(betAmt)) {
+                betAmt = parseInt(prompt(`You have ${allMonies} chips. How much would like to bet?`));
+            }
+
+            // Generate the winning number.
+            let winningNum = Math.round(Math.random() * 36);  // Should be 0 <= n <= 36
+            let outputStr = "Wheel lands on " + winningNum + "! ";
+
+            // Check to see if we meet any winning conditions.
+            let winner = false;
+            if (winningNum === betNum) {
+                allMonies += betAmt * 36;
+                winner = true;
+                outputStr += "Winner, winner, frog leg dinner! ";
+            }
+
+            if (winningNum % 2 === betNum % 2) {
+                winner = true;
+                allMonies += betAmt * 2;
+                outputStr += "Matching ODDS/EVENS! ";
+            }
+
+            if (!winner) {
+                allMonies -= betAmt;
+                outputStr += "LOSER! ";
+            }
+
+            // Alert the results. Kick out if can not play anymore.
+            alert(outputStr + `\n\nYou now have ${allMonies} chips.`);
+            if (allMonies === 0) {
+                alert("Game over, man. Game over! Thanks for all your chips. Ribbit.");
+                break;
+            }
+
+            if (prompt("Do you want to keep playing?") === 'n') {
+                alert("Thanks for playing. Come back and lose money again, anytime. Ribbit.");
+                break;
+            }
+        }
+    </script>
+</body>
+
+</html>

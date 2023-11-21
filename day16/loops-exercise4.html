@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <pre>
+        1. Generate a random number between MIN and MAX
+        Loop:
+        2. PROMPT the user to guess the number between MIN and MAX
+        3. IF user guess is too low
+            a. ALERT the user that their guess is too low
+            b. UPDATE the MIN value
+            c. GO BACK to STEP 2
+
+        4. IF user guess is too high
+            a. ALERT the user that their guess is too high
+            b. UPDATE the MAX value
+            c. GO BACK to STEP 2
+
+        5. IF user guess is perfect!
+            a. ALERT a win message.
+            b. BREAK out of the loop.
+
+        6. IF user guess is invalid
+            a. ALERT a goodbye message.
+            b. BREAK out of the loop.
+    </pre>
+    <script>
+        // Setup the initial variables for the program.
+        let MIN = 1;
+        let MAX = 100;
+        let correctNum = Math.ceil(Math.random() * MAX);
+
+        while (true) {
+            // Prompt the user for their number.
+            let userGuess = prompt(`Guess between ${MIN} and ${MAX}:`);
+            userGuess = parseInt(userGuess);  // Turn string into num
+
+            if (userGuess < MIN || userGuess > MAX) {
+                alert("WAT? We're done, here.");
+                break;
+            }
+            else if (userGuess < correctNum) {
+                alert("Too LOW. Try again.");
+                MIN = userGuess;
+            }
+            else if (userGuess > correctNum) {
+                alert("Too HIGH. Try again.");
+                MAX = userGuess;
+            }
+            else {
+                alert("You WIN! Great guess!");
+                break;
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions</title>
+</head>
+
+<body>
+    <script>
+        // Defined something to use later. But you have to CALL it for it to run.
+        function printHello() {
+            console.log("Inside printHello!");
+        }
+
+        printHello();  // Call/use the function.
+        console.log("Something else happens here.");
+        printHello();  // Call/use the function.
+        printHello();  // Call/use the function.
+
+        function addTwo(inNum) {
+            console.log(inNum + 2);
+        }
+
+        addTwo(10);
+
+        function addNums(inOne, inTwo) {
+            console.log(inOne + inTwo);
+        }
+
+        addNums(12, 23);
+
+        function multiNums(inOne, inTwo = 2) {
+            console.log(inOne * inTwo);
+        }
+
+        multiNums(3, 4);
+        multiNums(5);
+
+        function getNumInput(promptString) {
+            let input = prompt(promptString);
+            input = parseInt(input);
+            return input;
+        }
+
+        let newNum = getNumInput("Give me a number!");
+        console.log("Two times that is " + (newNum * 2));
+
+        let anotherNum = getNumInput("Another:");
+        console.log("Three times that is " + (anotherNum * 3));
+
+
+        // var message = "Outside";  // ??
+        let message = "Outside";
+        function saySomething() {
+            // Create my own version of message.
+            // var message = "Hello!";
+            let message = "Hello!";
+
+            // Use the outer version of message.
+            // message = "Hello!";
+
+            console.log(message);
+        }
+        saySomething();
+        console.log(message);
+
+        // Pure function has no side-effects.
+        // All changes are internal to the function.
+        let height = 10;
+
+        function addHeight(plusNum) {  // Not pure.
+            if (!isNaN(plusNum) && plusNum > 0 && plusNum < 10) {
+                height += plusNum;  // Changes external variable.
+            }
+        }
+        addHeight(3);
+
+        function addHeight(inHeight, plusNum) {  // Pure
+            return inHeight + plusNum;  // No changes to externals.
+        }
+        let heightReturn = addHeight(height, 3);
+
+    </script>
+</body>
+
+</html>

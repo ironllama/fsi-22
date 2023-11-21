@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <pre>
+        1. CREATE a variable to store ALL names
+        2. PROMPT the user to enter a name
+        3. IF they entered a name (NOT cancel, and NOT "")
+            1. CONCATENATE the current name to the list of ALL names
+                1. ALERT the list of ALL names
+                2. GO BACK to step 2.
+        4. IF they DIDN'T enter a name, STOP the loop
+        5. ALERT all the names
+    </pre>
+    <script>
+        let allNames = "";
+        let nameInput = prompt("Enter a name:");
+        while (nameInput !== "" && nameInput !== null) {
+            allNames += nameInput + " ";
+            alert("All: " + allNames);
+            nameInput = prompt("Enter a name:");
+        }
+        alert("Final: " + allNames);
+    </script>
+</body>
+
+</html>

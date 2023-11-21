@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+</head>
+
+<body>
+    <script>
+        // Tedious, long.
+        let fruitOne = "apple";
+        let fruitTwo = "pear";
+        let fruitThree = "lemon";
+        let fruitFour = "grape";
+        let fruitFive = "orange";
+
+        // Better, using an array.
+        let newArray = [];  // Typically seen this way.
+        let anotherNewArray = new Array();  // Less popular, but also valid.
+
+        let tenNums = new Array(10).fill(5);  // Create and populate with the same value.
+        console.log("TenNums:", tenNums);
+
+        let allFruit = ["apple", "pear", "lemon", "grape", "orange"];  // Can create AND populate at the same time.
+        console.log("All fruit:", allFruit);
+
+        // Accessing values
+        allFruit[0]  // First element in array, or "apple";
+        allFruit[1]  // Second element in array, or "apple";
+        allFruit.length  // Number of elements in the array.
+        allFruit[allFruit.length - 1]  // To get the last element of the array.
+
+        allFruit.at(0);
+        allFruit.at(1);
+        allFruit.at(-1);  // Last element of the array.
+        allFruit.at(-2);  // Second to last element of array.
+
+        // Adding stuff to an array (at the end of the array).
+        allFruit.push("watermelon");  // Most common.
+        console.log("PUSHED:", allFruit);
+
+        // Taking something out of an array (from the end of the array).
+        let popped = allFruit.pop();
+        console.log("POPPED:", popped, "from", allFruit);
+
+        // Adding stuff to the beginning of an array.
+        allFruit.unshift("watermelon");
+        console.log("UNSHIFT:", allFruit);
+
+        // Taking something out of an array (from the end of the array).
+        let shifted = allFruit.shift();
+        console.log("SHIFTED:", shifted, "from", allFruit);
+
+        // First, get position of where things are to be done.
+        let lemonPos = allFruit.indexOf("lemon");
+        console.log("LEMONPOS:", lemonPos);
+
+        // Slice.
+        let fruitSlice = allFruit.slice(0, lemonPos);
+        console.log("SLICE:", fruitSlice);
+
+        let noLemon = allFruit.slice(0, lemonPos).concat(allFruit.slice(lemonPos + 1));
+        console.log("Lemon sliced out:", noLemon);
+
+        let addWater = allFruit.slice(0, lemonPos).concat(['watermelon'].concat(allFruit.slice(lemonPos + 1)));
+        console.log("Watermelon added back in:", addWater);
+
+        // Splice.
+        allFruit.splice(lemonPos, 1, 'watermelon');
+        console.log("Watermelon spliced:", addWater);
+
+        // With
+        allFruit.with(lemonPos, 'watermelon');
+        console.log("Watermelon with:", addWater);
+
+        // Strings <--> Array
+        let myName = "George";
+        let rPos = myName.indexOf('r');
+        console.log("R pos", rPos);
+
+        // Split.
+        let myNameArr = myName.split("");
+        console.log("My Name as an Array", myNameArr);
+
+        let myNameSplitByR = myName.split("r");
+        console.log("My Name Split at R", myNameSplitByR);
+
+        let mySentence = "I'm trying to think of a sentence.";
+        let mySentenceSplit = mySentence.split(" ");
+        console.log("My sentence's words:", mySentenceSplit);
+
+        let mySentenceSplit2 = mySentence.split("think");
+        console.log("My sentence2's words:", mySentenceSplit2);
+
+        // Join.
+        console.log(allFruit.join(", "));
+        console.log(allFruit.join(" and "));
+        console.log(allFruit.join(""));
+
+        // Multidimensional Arrays
+        const drinks = [
+            ["Coke", 8.5],
+            ["Dr. Pepper", 10],
+            ["Sprite", 9.5],
+            ["Fanta", 7.5],
+            ["Coke Zero", 8.5],
+        ]
+        // Access Dr.P's rating.
+        let myDrink = drinks[1];
+        let myRating = myDrink[1];  // One step at a time.
+        console.log("Dr.P's rating, separated:", myRating);
+
+        console.log("Dr.P's rating:", drinks[1][1]);  // All at once.
+
+        const food = [
+            ["Pizza", 10, [10, 20, 30]],
+            ["Hot Dog", 7.5, [1, 2, 4]],
+        ];
+        // Price of a medium hotdog.
+        console.log("Med Hot Dog $" + food[1][2][1]);
+
+        console.log("FLATTENED:", food.flat(Infinity));
+
+        allFruit.sort();
+        console.log("ALL FRUIT:", allFruit);
+
+        allFruit.reverse();
+        console.log("ALL FRUIT:", allFruit);
+
+        console.log("Fruit has Grape:", allFruit.includes("grape"));
+
+        // Copy an array.
+        newFruit = allFruit;
+        newFruit.push("peach");
+        console.log("COPIED?", allFruit);
+
+
+    </script>
+</body>
+
+</html>
