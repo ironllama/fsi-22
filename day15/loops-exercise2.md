@@ -10,9 +10,9 @@ Explanation :
 
 During 3 loops, display to the user a message and ask them to enter a number between 1 and 10.
 
-Loop 1 : “Your number now equals <value number>
+Loop 1 : "Your number now equals <value number>"
 
-Loops 2 and 3 : “You can add a number between 1 and 10 to this number. Choose a number to add : “
+Loops 2 and 3 : "You can add a number between 1 and 10 to this number. Choose a number to add:"
 
 When the loops ends, display one of the following to the user, depending on their final total: 
 
@@ -20,7 +20,7 @@ When the loops ends, display one of the following to the user, depending on thei
 
 "The total was between [11-20]"
 
-"The total was between [21-30]"
+"The total was between [11-20]"
 
 **Question 5:** Display all the numbers divisible by 3 AND all the numbers divisible by 5, up to 1000.
 

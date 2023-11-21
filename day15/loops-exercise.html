@@ -50,9 +50,47 @@
         console.log(message.charAt(8));  // Ninth letter in the string.
         console.log(message.at(8));  // Ninth letter in the string.
         // Reverse a string while using a loop ("Hello" => "olleH")
+        const inputStr = prompt("Enter a word to reverse:");
+
+        let outputStr = "";  // To store the results.
+
+        // With subtraction on index.
+        for (let i = 0; i < inputStr.length; i++) {  // Interate forwards
+            outputStr += inputStr[inputStr.length - 1 - i];
+        }
+        alert("REVERSED: " + outputStr);
+
+        // Using prepending on the result string.
+        for (let i = 0; i < inputStr.length; i++) {  // Interate forwards
+            outputStr = inputStr[i] + outputStr;
+        }
+        alert("REVERSED: " + outputStr);
+
+        // Iterating backwards from the end of the string.
+        for (let i = inputStr.length - 1; i >= 0; i--) {
+            outputStr += inputStr[i];
+        }
+        alert("REVERSED: " + outputStr);
 
         // Show the first 20 numbers of the fibonacci sequence with a loop
         // (10 first numbers: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34)
+
+        // We're always going to be adding two numbers. Seed the first two numbers.
+        let firstNum = 0;
+        console.log(firstNum);
+        let secondNum = 1;
+        console.log(secondNum);
+
+        let i = 0;
+        while (i < 18) {  // Only need to do this 18 times, since we already have the first 2.
+            const newTotal = firstNum + secondNum;  // New total
+            console.log(newTotal);
+
+            // Switch around the significant numbers to repeat the adding sequence.
+            firstNum = secondNum;
+            secondNum = newTotal;
+            i += 1;  // Don't forget to advance, to avoid infinite loop.
+        }
     </script>
 </body>
 

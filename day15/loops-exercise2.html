@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops 2</title>
+</head>
+
+<body>
+    <script>
+        // Q1.
+        let i = 0;
+        while (i < 10) {
+            console.log("Q1: ", i);
+            i += 1;
+        }
+
+        // Q2.
+        let k = 0;
+        do {
+            console.log("Q2: ", k);
+            k += 1;
+        } while (k < 7);
+
+        // Q3.
+        let answer = prompt("Enter something to quit");
+        // console.log("ANS:", answer);  // Debugging the answer.
+        while (answer === '' || answer === null) {
+            alert("You chose to continue!");
+            answer = prompt("Enter something to quit");
+        }
+
+        // Q4.
+        let total = 0;
+
+        for (let numPrompts = 0; numPrompts < 3; numPrompts++) {
+            // Different questions, depending on first or not first time.
+            let inNum = "";
+            if (numPrompts === 0) inNum = prompt("Enter a number between 1 and 10:");
+            else inNum = prompt("You can add a number between 1 and 10 to this number. Choose a number to add:");
+
+            inNum = parseInt(inNum);
+
+            total += inNum;  // Add to total, per instructions.
+            console.log("You number now equals:", total);
+        }
+
+        if (total <= 10) console.log("The total was between [1-10]");
+        else if (total <= 20) console.log("The total was between [11-20]");
+        else console.log("The total was between [11-20]");
+
+        // Q5.
+        let q5Str = "";
+        for (let currNum = 0; currNum <= 1000; currNum++) {
+            if (currNum % 3 === 0 || currNum % 5 === 0) {
+                q5Str += currNum + ", ";
+            }
+        }
+        console.log("Q5:", q5Str);
+
+        // Q6.
+        let q6Total = 0;
+        for (let currNum = 0; currNum <= 1000; currNum++) {
+            if (currNum % 3 === 0 || currNum % 5 === 0) {
+                q6Total += 1;
+            }
+        }
+        console.log("Q6:", q6Total);
+
+        // Q7.
+        let q7Str = "";
+        for (let currNum = 1; currNum <= 1000; currNum++) {  // Results don't have 0?
+            if (currNum % 3 === 0 && currNum % 5 === 0) {
+                q7Str += currNum + ", ";
+            }
+        }
+        console.log("q7:", q7Str);
+
+        // Q8.
+        let q8Str = "2, ";
+        // for (let possPrime = 3; possPrime < 1000; possPrime++) {
+        //     if (possPrime % 2 === 0) continue;  // Test even numbers.
+        // }
+
+        // Have the loop not even test even numbers by skipping them.
+        outer:  // Labelled this outer loop, since we'll want to continue from here.
+        for (let possPrime = 3; possPrime < 1000; possPrime += 2) {
+            // Test all possible divisions (other than 1 and itself)
+            // Should only need to test up to num/2, since it just inverts the divisors
+            // after that.
+            for (let possDiv = 2; possDiv < Math.ceil(possPrime / 2); possDiv++) {
+                if (possPrime % possDiv === 0) continue outer;
+            }
+            q8Str += possPrime + ", ";
+        }
+        console.log("q8:", q8Str);
+
+    </script>
+</body>
+
+</html>
