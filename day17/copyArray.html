@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copying Arrays</title>
+</head>
+
+<body>
+    <script>
+        const fruit = ["apple", "pear", "tomato", "orange", "tomato"];
+        // const vegetable = fruit;  // Not a copy.
+        const vegetable = fruit.slice();  // Make a copy, as the arguments are all optional.1
+
+        console.log("VEG:", vegetable);
+
+        vegetable[0] = "spinach";
+        console.log("VEG:", vegetable, "FRUIT:", fruit);
+
+        let kids = [
+            ["Chris", 19],
+            ["Georges", 33],
+            ["Dustin", 29],
+            ["Wendy", 35],
+        ];
+        const newKids = kids.slice();  // Slice is only a shallow copy.
+
+        newKids.push(["Monkety", 9]);
+
+        newKids[1][0] = "Jorge";  // Changes BOTH
+        console.log("NEW KIDS:", newKids.join(", "));
+        console.log("ORIG KIDS:", kids.join(", "));
+
+        // Reset the array
+        kids = [
+            ["Chris", 19],
+            ["Georges", 33],
+            ["Dustin", 29],
+            ["Wendy", 35],
+        ];
+        // Manually deep copy.
+        const stepKids = [];
+        for (let kid of kids) {
+            stepKids.push(kid.slice());
+        }
+        stepKids[1][0] = "Jorge";
+        console.log("DEEP COPY");
+        console.log("NEW KIDS:", stepKids.join(", "));
+        console.log("ORIG KIDS:", kids.join(", "));
+
+        // A bit hacky. Not as efficient, but gets the deep copy job done.
+        let orphanKids = JSON.parse(JSON.stringify(kids));
+        orphanKids[1][0] = "Jorge";
+        console.log("JSON OUT and JSON IN");
+        console.log("NEW KIDS:", orphanKids.join(", "));
+        console.log("ORIG KIDS:", kids.join(", "));
+
+        // Spread operator -- shallow copy.
+        let familiars = [...kids];  // Same as slice();
+        let onTheBlock = [["Monkety", 9], ...kids];
+        let urchins = [...kids, ["Monkety", 9]];
+        let lostKids = [["Monkety", 9], ...kids, ["Pedro", 21]];
+        console.log(familiars, onTheBlock, urchins, lostKids);
+
+    </script>
+</body>
+
+</html>
