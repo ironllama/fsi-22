@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Function exercises</title>
+</head>
+
+<body>
+  <script src="letters.js"></script>
+  <script src="people.js"></script>
+  <script src="handystuff.js"></script>
+  <script type="text/javascript">
+    // Create a function that says hello to the person name provided as an argument.
+    function greet(inName) {
+      console.log("Hello", inName);
+    }
+    greet("Benjamin");
+
+    // Create a function that will tell you if a provided year is a leap year or not.
+    // A year is a leap year if it is divisible by 4 but not 100, or else is divisible by 400.
+
+    // Returns true or false.
+    function isLeapYear(numYear) {
+      let leapYear = false;  // Initialise the return value, since we want to return something.
+
+      // Logic to change / determine the return value.
+      if (numYear % 4 === 0) {  // Divisible by 4?
+        if (numYear % 100 !== 0) {  // Not divisible by 100?
+          leapYear = true;
+        }
+        else if (numYear % 400 === 0)  // Else is divisible by 400?
+        {
+          leapYear = true;
+        }
+      }
+
+      return leapYear;  // To return something.
+    }
+    console.log("Leap Year 2008:", isLeapYear(2008));
+    console.log("Leap Year 2012:", isLeapYear(2012));
+    console.log("Leap Year 2000:", isLeapYear(2000));
+    console.log("Leap Year 2003:", isLeapYear(2003));
+    console.log("Leap Year 2023:", isLeapYear(2023));
+    console.log("Leap Year 2024:", isLeapYear(2024));
+
+
+    // Create a function that will return all the vowels in an array of letters. It should return the vowels found as a new array.
+    // Use the lotsOfLetters array from the provided letters.js file.
+    // let vowels = ['a', 'e', 'i', 'o', 'u'];
+    let vowels = 'aeiou';
+    function getVowels(lettersArray) {
+      let arrayOfVowels = [];
+
+      // for (let i = 0; i < lettersArray.length; i++) {
+      //   let letter = lettersArray[i];
+      // Same as above, in terms of for loop setup.
+      for (let letter of lettersArray) {  // Loop through all letters in the incoming array.
+        if (vowels.indexOf(letter) !== -1) {  // If the current letter is not in the string.
+          arrayOfVowels.push(letter);
+        }
+      }
+
+      return arrayOfVowels;
+    }
+    console.log("Vowels:", getVowels(lotsOfLetters));
+
+    // Create a function that takes an array of people and a name and will return back the age of that person.
+    // Use the lotsOfPeople array from the provided people.js file.
+    function getAgeFor(inName, inListOfPeople) {
+      let returnAge = 0;
+
+      // for (let person of inListOfPeople) {
+      for (let i = 0; i < inListOfPeople.length; i++) {
+        let person = inListOfPeople[i];
+        if (person[0] === inName) {
+          returnAge = person[1];
+          break;  // Optimization. Don't keep checking names if already found.
+        }
+      }
+
+      return returnAge;
+    }
+    console.log("Age (Verla):", getAgeFor("Verla", lotsOfPeople));
+    console.log("Age (Lyric):", getAgeFor("Lyric", lotsOfPeople));
+    console.log("Age (Pedro):", getAgeFor("Pedro", lotsOfPeople));
+
+    // Create a function that take an array of people, a name, and a age and will add a new person into the lotsOfPeople array.
+    // Use the lotsOfPeople array from the provided people.js file.
+
+    // lotsOfPeople.push(["Henrietta", 25]);  // Started with this logic I know works.
+
+    // Wrapped above statement in a function.
+    function addPerson(inName, inAge, listOfPeople) {
+      // let returnArr = listOfPeople;
+      // If you want to clone/copy the person array, instead of changing in-place.
+      let returnArr = [];
+      for (let personArr of listOfPeople) {
+        returnArr.push(personArr.slice());  // We know the inner array does not have objects.
+      }
+
+      // lotsOfPeople.push(["Henrietta", 25]);
+      returnArr.push([inName, inAge]);  // Rewrite above for arguments in function.
+
+      return returnArr;
+    }
+
+    // console.log("Person added (Henrietta):", lotsOfPeople);
+    // console.log("Person added (Porche):", addPerson("Porche", 32, lotsOfPeople.slice()));
+    console.log("Person added (Porche):", addPerson("Porche", 32, lotsOfPeople));
+    console.log("Person added (Mercedes):", addPerson("Mercedes", 41, lotsOfPeople));
+    console.log("FINAL LIST:", lotsOfPeople);
+
+    greetPerson("Doug");
+
+    // BONUS:
+    // Create a function that takes two arguments: an array of numbers and a multiplier.
+    // The function should update the array with each number multiplied by the multiplier parameter.
+    // Ex : [2,5,1,10] with multiplier 2 should update the array to [4,10,2,20]
+
+    // let numOfNums = [2, 5, 1, 10];
+    // let multiplier = 2;
+
+    function multiplyArrBy(multiplier, arrOfNums) {
+      for (let i = 0; i < arrOfNums.length; i++) {
+        arrOfNums[i] = arrOfNums[i] * multiplier;
+      }
+    }
+    let origArr = [2, 5, 1, 10];  // Need a name to the arr, so we can use it after the function.
+    multiplyArrBy(2, origArr);
+    console.log("AFTER MULTI:", origArr);
+    console.log("AFTER MULTI:", multiplyArrBy(2, origArr));  // Prints out nothing, as function does not return anything.
+
+    function multiplyArrBy2(multiplier, arrOfNums) {
+      for (let i = 0; i < arrOfNums.length; i++) {
+        arrOfNums[i] = arrOfNums[i] * multiplier;
+      }
+      return arrOfNums;
+    }
+    // let origArr2 = multiplyArrBy2(2, [2, 5, 1, 10]);
+    // console.log("AFTER MULTI:", origArr2);
+    console.log("AFTER MULTI:", multiplyArrBy2(2, [2, 5, 1, 10]));  // Same as above, eliminating variable middleman.
+    console.log("AFTER MULTI:", multiplyArrBy2(2, origArr));  // Same as above, eliminating variable middleman.
+    // console.log("AFTER MULTI:", [4, 10, 2, 20]));  // Above evaluates to this, after function is completed.
+
+
+    // Do the previous exercise again, but this time the array passed in should not be changed by the function. Instead, return a new array.
+    function multiplyNewArrBy(multiplier, arrOfNums) {
+      let newArr = arrOfNums.slice();  // Copy array. Shallow is OK, since we don't have object values in array.
+
+      for (let i = 0; i < newArr.length; i++) {  // Same as previous version of function.
+        newArr[i] = newArr[i] * multiplier;
+      }
+
+      return newArr;  // Don't forget to return.
+    }
+    let oldArr = [2, 5, 1, 10];
+    let newArr = multiplyNewArrBy(2, oldArr);
+    console.log("AFTER NEW MULTI: NEW:", newArr, "OLD:", oldArr);
+
+    // Create a function that will sort an array of people so the people are ordered by their age in numerical order.
+    // Use the lotsOfPeople array from the provided people.js file.
+    // Ex: [["Carolina", 28], ["Alex", 18], ["Georges", 31], ["Betty", 64]]
+    // becomes
+    // [["Alex", 18], ["Carolina", 28], ["Georges", 31], ["Betty", 64]]
+
+    // lotsOfPeople.sort();
+    // console.log("PEOPLE:", lotsOfPeople);
+
+    function sortByAge(inPeople) {
+      // let newAge = [];
+
+      // Works!
+      // for (let ageToCheck = 0; newAge.length < inPeople.length; ageToCheck++) {
+      //   for (let i = 0; i < inPeople.length; i++) {
+      //     if (inPeople[i][1] === ageToCheck) {
+      //       newAge.push(inPeople[i]);
+      //     }
+      //     // let person = inPeople[i];  // Same as above. Using variable to make it a bit more readable.
+      //     // if (person[1] === ageToCheck) {
+      //     //   newAge.push(person);
+      //     // }
+      //   }
+      // }
+
+      // Create a new array, putting age in front, just for the purpose of easy sorting.
+      let sortingArr = [];
+      // Creates an array that has an age in front. (eg. [[28, ["Carolina", 28]], [18, ["Alex", 18]], ... ])
+      for (let person of inPeople) {
+        sortingArr.push([person[1], person]); // eg. [28, ["Carolina", 28]]
+      }
+      // sortingArr.sort();  // Sorts by the first element (age). However, sorts by character.
+      function customSort(a, b) {
+        // if (a < b) return -1;
+        // else if (a > b) return 1;
+        // else return 0;
+        return a[0] - b[0];  // Same as above, ignoring actual value and focusing on number sign or 0.
+      }
+      sortingArr.sort(customSort);
+
+      // Now, repopulate our return array with just the values of the sorted array from above.
+      let newAge = [];
+      for (let item of sortingArr) {
+        newAge.push(item[1]);  // Only interested in the value. (eg. ["Alex", 18])
+      }
+
+      return newAge;
+    }
+    let copyOfLostOfPeople = addPerson("Pikachu", 2, lotsOfPeople);
+    let result = sortByAge(copyOfLostOfPeople);
+    console.log("PEOPLE:", result);
+
+  </script>
+</body>
+
+</html>

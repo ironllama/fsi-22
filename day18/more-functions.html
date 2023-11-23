@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Functions</title>
+</head>
+
+<body>
+    <script>
+        function customCompare(a, b) {
+            return a - b;
+        }
+        let ages = [25, 34, 11, 9, 2];
+        ages.sort(customCompare);
+
+        console.log("SORTED?", ages);
+
+        // function one(anotherFn) {
+        //     console.log("Inside one!");
+        //     anotherFn();
+        // }
+
+        // function two() {
+        //     console.log("Inside two!");
+        // }
+        // one(two); // Passing two as an argument.
+
+        const one = function (anotherFn) {
+            console.log("Inside one!");
+            anotherFn();  // Calls the function passed in.
+        }
+
+        const two = function () {
+            console.log("Inside two!");
+            return 3;
+        }
+        // console.log(one + two);
+        one(two); // Passing two as an argument.
+
+
+        // Array filter()
+        // let fruit = ["apple", "pear", "spinach", "lemon", "lime"];
+        let barCustomers = [34, 59, 23, 17, 35, 67, 45];
+        function filterOutMinors(currAge) {
+            if (currAge < 21) return false;
+            return true;
+        }
+        let oldEnough = barCustomers.filter(filterOutMinors);
+        console.log("BAR CUSTOMERS:", oldEnough);
+
+        // Array forEach()
+        function multiByTwo(item, i, origArr) {
+            // console.log(item * 2);
+            origArr[i] = item * 2;
+        }
+        barCustomers.forEach(multiByTwo);
+        console.log(barCustomers);
+
+        // Array some()
+        function testOver60(item) {
+            return item > 60;
+        }
+        let oldPeopleHere = barCustomers.some(testOver60);
+        console.log("SOME:", oldPeopleHere);
+
+        // Array map()
+        function multiByThree(item) {
+            return item * 3;
+        }
+        let mappedArray = barCustomers.map(multiByThree);
+        console.log("MAPPED:", mappedArray);
+        console.log("BAR CUSTOMERS:", barCustomers);
+
+        function addToTotal(accumulator, item) {
+            accumulator += item;
+            return accumulator;  // Need to return for the reduce function.
+        }
+        let totalAges = barCustomers.reduce(addToTotal, 0);  // 0 is initial for accumulator.
+        console.log("Total ages:", totalAges);
+
+        function addToResult(acc, item) {
+            acc.push(item);  // My operation.
+            return acc;
+        }
+        let sameAsMap = barCustomers.reduce(addToResult, []);
+        console.log("Same as map:", sameAsMap);
+
+        function legalAge(acc, item) {
+            if (item > 42) acc.push(item);  // My operation.
+            return acc;
+        }
+        let legalAges = barCustomers.reduce(legalAge, []);
+        console.log("Legal ages:", legalAges);
+
+        // Reduce the number of variables, if they are only used once.
+        let oneStr = "Apple";
+        console.log("I like " + oneStr);
+
+        // Since oneStr is only used once, we can inline the use.
+        console.log("I like " + "Apple");
+
+
+        let twoStr = "Apple".toUpperCase();
+        console.log("I like " + twoStr);
+
+        console.log("I like " + "Apple".toUpperCase());
+
+        // let legalAges = barCustomers.reduce(legaAge, []);
+        // console.log("Legal ages:", legalAges);
+        console.log("Legal ages:", barCustomers.reduce(legalAge, []));
+
+        // barCustomer.reduce(function (acc, item) {
+        //     if (item > 42) acc.push(item);  // My operation.
+        //     return acc;
+        // });
+
+        // Named/declared function
+        console.log(getApple1());
+        function getApple1() {
+            // Something.
+            return "Apple";
+        }
+        console.log(getApple1());
+
+        // Named anonymous function (expression)
+        // console.log(getApple2());  // Can't do this.
+        let getApple2 = function () {
+            // Something.
+            return "Apple";
+        }
+        console.log(getApple2());
+
+        // IIFE -- Immediately Invoked Function Expression
+        (function () {
+            console.log("WAT, WHY?");
+        })();
+
+        // Arrow Function (expression)
+        const getApple3 = () => "Apple";
+        // const getApple3 = () => { return "Apple"; }
+        console.log(getApple3());
+
+        console.log("BAR SORTED BEFORE:", barCustomers);
+        // All spelled out.
+        // let sortCompare = function (a, b) {
+        //     return a - b;
+        // }
+        // barCustomers.sort(sortCompare);
+
+        // Removed single-use variable.
+        // barCustomers.sort(function(a, b) {
+        //     return a - b;
+        // });
+
+        // Turned anonymous function into arrow function.
+        // barCustomers.sort((a, b) => {
+        //     return a - b;
+        // });
+
+        // There is only one line, so we don't have to use curly braces
+        // Last line is the automatic return, but there is only one line, so no return needed
+        barCustomers.sort((a, b) => a - b);
+
+        console.log("BAR SORTED AFTER:", barCustomers);
+    </script>
+</body>
+
+</html>
