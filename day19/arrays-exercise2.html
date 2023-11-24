@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays2</title>
+</head>
+
+<body>
+    <script>
+        // Here are the temperatures for each day in May, in degrees Fahrenheit.
+        const mayTemps = [
+            [86, 78, 85, 79, 86, 78, 80],
+            [84, 82, 74, 85, 83, 82, 79],
+            [76, 79, 80, 81, 82, 81, 78],
+            [77, 79, 83, 84, 85, 80, 78],
+            [83, 81, 78]
+        ];
+
+        // Create a function that returns the temperature for a given day (1-31)
+        // Math intensive, but efficient.
+        function getTempForDay(dayNum) {
+            let weekNum = Math.floor((dayNum - 1) / 7);
+            let weekDayNum = ((dayNum - 1) % 7);
+            // console.log("DAY:", dayNum, "WEEK:", weekNum, "WDAY:", weekDayNum);
+            return mayTemps[weekNum][weekDayNum];
+        }
+        console.log(getTempForDay(16));
+        console.log(getTempForDay(21));
+        console.log(getTempForDay(8));
+        console.log(getTempForDay(1));
+        console.log(getTempForDay(31));
+
+        // Create a new array that suits my approach (flatten), then use it.
+        function getTempForDay2(dayNum) {
+            let dayArr = mayTemps.flat();
+            return dayArr[dayNum - 1];
+        }
+        console.log(getTempForDay(16));
+        console.log(getTempForDay(21));
+        console.log(getTempForDay(8));
+        console.log(getTempForDay(1));
+        console.log(getTempForDay(31));
+
+
+        // Create a function that returns an array that contains the lowest temp, highest temp, and average temp for the month. (eg. [54, 66, 58])
+        // let arrayOfLowHighAvg = [Infinity, 0, 0];
+        // Tracking variables.
+        let lowestTemp = Infinity;
+        let highestTemp = 0;
+        let total = 0;
+        let totalDays = 0;
+        for (let w = 0; w < mayTemps.length; w++) {  // Loop through each week.
+            let week = mayTemps[w];
+            for (let d = 0; d < week.length; d++) {  // Loop through each week day.
+                let day = week[d];
+
+                // Run conditions.
+                if (day < lowestTemp) lowestTemp = day;
+                if (day > highestTemp) highestTemp = day;
+                total += day;
+                totalDays += 1;
+
+                // if (day > arrayOfLowHighAvg[0]) arrayOfHighLowAvg[0] = day;
+                // if (day < arrayOfLowHighAvg[1]) arrayOfHighLowAvg[1] = day;
+                // arrayOfLowHighAvg[2] += day;
+            }
+        }
+        // Create output array.
+        let arrayOfLowHighAvg = [lowestTemp, highestTemp, (total / totalDays).toFixed(2)];
+        // arrayOfLowHighAvg[2] = arrayOfHighLowAvg / mayTemps.length;
+        console.log("Array of High, Low, and Avg:", arrayOfLowHighAvg);
+
+        let mayTempsFlat = mayTemps.flat();
+        mayTempsFlat.sort((a, b) => a - b);  // To be safe against single digits / triple digits.
+
+        // let avgTemp = mayTempsFlat.reduce((a, v) => a + v, 0) / mayTempsFlat.length;
+        let avgTemp = averageOfArray(mayTempsFlat);
+        let arrayOfLowHighAvg2 = [mayTempsFlat[0], mayTempsFlat.at(-1), avgTemp];
+        console.log("Array of High, Low, and Avg:", arrayOfLowHighAvg2);
+
+        // Since I'll probably doing this multiple times, I'm going to create a function for it.
+        function averageOfArray(inArr) {
+            let totals = inArr.reduce((a, v) => a + v, 0);
+            let avg = totals / inArr.length;
+            return Math.round(avg);
+        }
+
+        // Create a function that return the average temperature for a given week (1-5).
+        function avgForWeek(inWeek) {
+            let week = mayTemps[inWeek - 1];
+            let total = 0;
+            for (let i = 0; i < week.length; i++) {
+                let day = week[i];
+                total += day;
+            }
+            return total / week.length;
+        }
+        console.log("AVG for WEEK 1:", avgForWeek(1));
+        console.log("AVG for WEEK 5:", avgForWeek(5));
+
+        function avgForWeek2(inWeek) {
+            let week = mayTemps[inWeek - 1];
+            return averageOfArray(week);  // Use the convenience function, above.
+        }
+        console.log("AVG for WEEK 1:", avgForWeek2(1));
+        console.log("AVG for WEEK 5:", avgForWeek2(5));
+
+
+        // Create a function that returns the average temperature for a given day of the week ("Su", "M", "T", "W", "Th", "F", "S").
+        let dayName = ["Su", "M", "T", "W", "Th", "F", "S"];
+        function avgForWeekDay(inWeekDay) {
+            let weekDayIdx = dayName.indexOf(inWeekDay);  // Translate string to pos for later use against mayTemps
+            let total = 0;  // To calculate average, later.
+            let totalDays = 0;
+            for (let week of mayTemps) {  // For each week in May
+                if (week.length > weekDayIdx) {  // If the week has more days than the pos we're checking
+                    total += week[weekDayIdx];  // Add the temp to the total for that day (pos) of the week.
+                    totalDays += 1;
+                }
+            }
+            return Math.round(total / totalDays);
+        }
+        console.log("Avg for Tuesday: ", avgForWeekDay("T"));
+        console.log("Avg for Sundays: ", avgForWeekDay("Su"));
+        console.log("Avg for Saturday: ", avgForWeekDay("S"));
+
+        function avgForWeekDay2(inWeekDay) {
+            let weekDayIdx = dayName.indexOf(inWeekDay);  // Translate string to pos for later use against mayTemps
+            let days = [];  // To store all of the temps
+            for (let week of mayTemps) {  // For each week in May
+                if (week.length > weekDayIdx) {  // If the week has more days than the pos we're checking
+                    days.push(week[weekDayIdx]);
+                }
+            }
+            return averageOfArray(days);  // Reuse previously defined avg function.
+        }
+        console.log("Avg for Tuesday: ", avgForWeekDay2("T"));
+        console.log("Avg for Sundays: ", avgForWeekDay2("Su"));
+        console.log("Avg for Saturday: ", avgForWeekDay2("S"));
+
+
+        // Create a function that returns a new data set with the temperatures converted to Celsius.
+        // C = (F-32)/(5/9)
+        function toCelsius(fahr) {
+            return Math.round((fahr - 32) / (9 / 5));
+        }
+
+        let mayCelsius = [];
+        for (let w = 0; w < mayTemps.length; w++) {
+            let week = mayTemps[w];
+            let newWeek = [];
+            for (let d = 0; d < week.length; d++) {
+                let day = week[d];
+                newWeek.push(toCelsius(day));
+            }
+            mayCelsius.push(newWeek)
+        }
+        console.log("CELSIUS:", mayCelsius);
+
+        let mayCelsius2 = mayTemps.map(w => w.map(d => toCelsius(d)));
+        console.log("CELSIUS2:", mayCelsius2);
+
+
+        // Create a function that prints out the mode and median temperatures for the month.
+        // Mode: The mode is the value that appears most frequently in a data set.
+        // Median: The median is the middle value of a data set, which separates the highest and lowest values equally.
+        //  It is calculated by arranging the data set in order from lowest to highest and finding the value in the exact middle.
+
+        let medianTemp = 0;
+        let medianTempPos = mayTempsFlat.length / 2;
+        if (mayTempsFlat.length % 2 === 0) {
+            medianTemp = Math.round(
+                (mayTempsFlat[medianTempPos - 1] + mayTempsFlat[medianTempPos]) / 2
+            );
+        }
+        else {
+            medianTempPos = Math.ceil(medianTempPos);
+            medianTemp = mayTempsFlat[medianTempPos];
+        }
+        console.log("MEDIAN:", medianTemp);
+
+        // For the overall max freq (result)
+        let freqTemp = 0;
+        let freqTempNum = 0;
+
+        // For the running freq's
+        let currFreqTemp = 0;
+        let currFreqTempNum = 0;
+        for (let day of mayTempsFlat) {  // Use the flat, sorted array with same temps next to each other
+            if (day === currFreqTemp) {  // If the next temp is the same...
+                currFreqTempNum += 1;
+            }
+            else {  // If the next temp is not the same, we're starting a new set
+                if (currFreqTempNum > freqTempNum) {  // If the previous set had more items than the current max
+                    freqTempNum = currFreqTempNum;
+                    freqTemp = currFreqTemp;
+                }
+
+                // Reset the running freq's with the new temp
+                currFreqTemp = day;
+                currFreqTempNum = 1;
+            }
+        }
+        console.log("MODE:", freqTemp, freqTempNum);
+
+        // Create a separate counting/tally array to keep track of frequency of each temperature.
+        let allFreq = [];  // Going to format in [[freq, temp], [freq, temp], ...]
+        for (let day of mayTempsFlat) {
+            let freqTemp = allFreq.find(v => v[1] === day);
+            // if (typeof tempIdx !== 'undefined') {
+            if (freqTemp) {  // Same as commented above. No chance of 0 or [] returned, so should be ok.
+                freqTemp[0] += 1;
+            }
+            else {
+                allFreq.push([1, day]);
+            }
+        }
+        // console.log("ALL FREQS:", allFreq);
+        allFreq.sort().reverse();
+        console.log("MODE2:", allFreq[0][1], allFreq[0][0]);
+
+
+        // BONUS:
+        // Rotate the May's temperature dataset of values by 90deg counter clock-wise.
+        // Eg: [
+        //     [1, 2, 3],
+        //     [4, 5, 6],
+        //     [7, 8]
+        // ]
+        // Rotated: [
+        //     [3, 6],
+        //     [2, 5, 8],
+        //     [1, 4, 7]
+        // ]
+    </script>
+</body>
+
+</html>

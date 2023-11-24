@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Function</title>
+</head>
+
+<body>
+    <script>
+        // Generators.
+        function* names() {
+            yield "Abby";
+            yield "Barbara";
+            yield "Charlie";
+            yield "Douglas";
+        }
+
+        const namesIter = names();
+        console.log("FIRST:", namesIter.next());
+        console.log("FIRST:", namesIter.next());
+        console.log("FIRST:", namesIter.next());
+
+        const namesIter2 = names();
+        console.log("SECOND:", namesIter2.next());
+        console.log("SECOND:", namesIter2.next());
+
+        console.log("FIRST:", namesIter.next());
+        console.log("FIRST:", namesIter.next());
+
+
+        function* namesResettable() {
+            const allNames = ["Abby", "Barbara", "Charlie", "Douglas"];
+            for (let i = 0; i < allNames.length; i++) {
+                let reset = yield allNames[i];
+                if (reset) i = -1;
+            }
+        }
+        const namesResettableIter = namesResettable();
+        console.log("THIRD:", namesResettableIter.next().value);
+        console.log("THIRD:", namesResettableIter.next().value);
+        console.log("THIRD:", namesResettableIter.next(true).value);
+        console.log("THIRD:", namesResettableIter.next().value);
+        console.log("THIRD:", namesResettableIter.next().value);
+
+
+        // Recursion.
+        // Fib: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...
+
+        // Old way. (Still good way)
+        // We're always going to be adding two numbers. Seed the first two numbers.
+        let firstNum = 0;
+        console.log("FIRST FIBS:", firstNum);
+        let secondNum = 1;
+        console.log("FIRST FIBS:", secondNum);
+        for (let i = 0; i < 18; i++) {  // Only need to do this 18 times, since we already have the first 2.
+            const newTotal = firstNum + secondNum;  // New total
+            console.log("FIRST FIBS:", newTotal);
+
+            // Switch around the significant numbers to repeat the adding sequence.
+            firstNum = secondNum;
+            secondNum = newTotal;
+        }
+
+        // Recursive way.
+        function fib(allFibs) {
+            allFibs.push(allFibs.at(-2) + allFibs.at(-1));
+
+            if (allFibs.length < 20) {  // Check to see if we continue to recurse.
+                fib(allFibs);  // RECURSION!
+            }
+        }
+        const finalFibs = [0, 1];
+        fib(finalFibs);
+        console.log("SECOND FIBS:", finalFibs);
+
+
+        function blah(num) {
+            console.log("NEW BLAH", num);
+            if (num > 0) {  // Test to see if we keep going deeper.
+                blah(num - 1);  // Recurse here.
+                console.log("BACK FROM BLAH. BACK IN", num);
+            }
+            else {
+                console.log("DEEP ENOUGH");
+            }
+        }
+        blah(5);  // Kick off here.
+    </script>
+</body>
+
+</html>
