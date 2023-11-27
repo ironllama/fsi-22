@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Objects</title>
+</head>
+
+<body>
+    <script>
+        // let Vehicle = function () {
+        //     this.manufacturer = "Lamborghini";
+        //     this.model = "1";
+        //     this.fuel = "Electric";
+        //     this.color = "orange";
+        //     this.productionYear = 2021;
+        //     this.registrationNumber = "YT96UVX";
+        // }
+
+        // Vehicle.prototype.toString = function () {
+        //     // return `${this.productionYear} ${this.manufacturer} ${this.model}: ${this.registrationNumber}`;
+        //     return this.prettyOut();
+        // }
+
+        // Vehicle.prototype.prettyOut = function () {
+        //     return `${this.productionYear} ${this.manufacturer} ${this.model}: ${this.registrationNumber}`;
+        // }
+
+        class Vehicle {
+            constructor() {
+                this.manufacturer = "Lamborghini";
+                this.model = "1";
+                this.fuel = "Electric";
+                this.color = "orange";
+                this.productionYear = 2021;
+                this.registrationNumber = "YT96UVX";
+                this.racingNumbers = [45, 35, 29];
+            }
+
+            toString() {
+                // return `${this.productionYear} ${this.manufacturer} ${this.model}: ${this.registrationNumber}`;
+                return this.prettyOut();
+            }
+
+            prettyOut() {
+                return `${this.productionYear} ${this.manufacturer} ${this.model}: ${this.registrationNumber}`;
+            }
+
+            makeSound() {
+                console.log("VROOM");
+            }
+        }
+
+        let lambo = new Vehicle();
+        console.log("CAR: " + lambo);
+
+
+        class Bicycle extends Vehicle {
+            constructor(man, mod, year, reg) {
+                super();
+                this.manufacturer = man;
+                this.model = mod;
+                this.productionYear = year;
+                this.fuel = "you";
+                this.registrationNumber = reg;
+                this.wheels = 2;
+                this.bell = true;
+            }
+
+            ringBell() {
+                console.log("RING RING");
+            }
+
+            makeSound() {
+                console.log("Woosh");
+            }
+        }
+        let trek = new Bicycle("trek", "star", 2225, 'dkfi923u');
+        console.log("BIKE: " + trek);
+        trek.ringBell();
+        lambo.makeSound();
+        trek.makeSound();
+
+        let ferrari = lambo;  // Not a copy. Just another name for the same car.
+        ferrari.manufacturer = "Ferrari";
+        ferrari.racingNumbers.push(19);
+        console.log(ferrari, lambo);
+
+        let porsche = Object.assign({}, lambo);  // Shallow copy.
+        porsche.manufacturer = "Porsche";
+        porsche.racingNumbers.push(99);
+        console.log(porsche, lambo);
+        // porsche.makeSound();  // Does not have access.
+
+        let hotwheels = { ...lambo };  // Shallow copy.
+        hotwheels.manufacturer = "hotwheels";
+        hotwheels.racingNumbers.push(55);
+        console.log(hotwheels, lambo);
+        // hotwheels.makeSound();  // Does not have access.
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="cars.js"></script>
+    <script type="text/javascript">
+        // Create an object user with a firstName, a lastName, and an age.
+        // Then add 10 years to the age of the user.
+
+        let person1 = {
+            firstName: "Philip",
+            lastName: "Gross",
+            age: 35
+        };
+        person1.age += 10;  // Also: person1['age'] = person1['age'] + 10;
+
+
+        // Create two other user objects and group them together in a "users" variable.
+        // Then display in the console on a single line, all the users' fullnames.
+
+        let person2 = {
+            firstName: "Jimmy",
+            lastName: "Guava",
+            age: 26
+        };
+
+        function Person(first, last, age) {
+            this.firstName = first;
+            this.lastName = last;
+            this.age = age;
+        };
+        let person3 = new Person("Ben", "Butcher", 40);
+
+        const users = [person2, person3];
+
+        console.log(users[0].firstName + " " + users[0].lastName + ", " +
+            users[1].firstName + " " + users[1].lastName);
+
+        let fullName = [];
+        for (let i = 0; i < users.length; i++) {
+            let newFullName = users[i].firstName + " " + users[i].lastName;
+            fullName.push(newFullName);
+        }
+        console.log(fullName.toString());
+
+        const fullNameArr = users.map(u => u.firstName + " " + u.lastName);
+        const fullName2 = fullNameArr.join(", ");
+        console.log(fullName2);
+
+
+        // Add a length property to all of your users that will return the length of their full name.
+        for (let i = 0; i < users.length; i++) {
+            let user = users[i];
+            // users[i].lengthOfName = fullName[i].length;
+            user.lengthOfName = user.firstName.length + user.lastName.length;
+        }
+        console.log(users);
+
+        users.forEach(user => {
+            user.nameLength = user['firstName'].length + user['lastName'].length;
+        });
+        console.log(users);
+
+
+        // Use the allVehicles array from the cars.js file and:
+        // Create a function that returns the cars that were produced the last 5 years.
+        // Then display manufacturer and model names of those newer cars.
+
+        function last5Years() {
+            let results = [];
+
+            for (let i = 0; i < allVehicles.length; i++) {
+                // let vehicle = allVehicles[i];
+                let currYear = 2023;
+                let productionYear = allVehicles[i].productionYear;
+                if (productionYear >= (currYear - 5)) {
+                    results.push(allVehicles[i].manufacturer + " " + allVehicles[i].model);
+                }
+            }
+
+            return results;
+        }
+        console.log("5 YEARS:", last5Years());
+
+
+        // Sort all the vehicles by production year date.
+
+        allVehicles.sort((a, b) => a.productionYear - b.productionYear);
+        console.log("SORTED:", allVehicles.map(v => v.productionYear));
+
+
+        // BONUS:
+        // Create a function that will convert an object into a array like this:
+        // {firstName: "Philippe", lastName: "Gross"} => [["firstName", "Philippe"], ["lastName", "Gross"]]
+
+        let emptyArray = [];
+        function converter(obj) {
+            for (let i = 0; i < Object.keys(obj).length; i++) {
+                emptyArray.push([Object.keys(obj)[i], Object.values(obj)[i]]);
+            }
+        }
+        converter({ firstName: "Philippe", lastName: "Gross" });
+        console.log("BONUS:", emptyArray);
+
+        const obj2arr = inObj => Object.entries(inObj);
+        let newArr = obj2arr({ firstName: "Philippe", lastName: "Gross" });
+        console.log("BONUS:", newArr);
+
+
+        // Create a function that will compare two objects and display if they are equal or not.
+        // isEqual({a: 1, b: [1, 2]}, {a: 1, b: [1, 2]}) => true
+        // isEqual({a: 1, b: [1, 2]}, {a: 1, b: [1, 3]}) => false
+
+        function compareObjects(obj1, obj2) {
+            let arr1 = obj2arr(obj1);
+            let arr2 = obj2arr(obj2);
+
+            for (let key in obj1) {
+                if (Array.isArray(obj1[key])) {  // Handle special case of array. Specific to this example.
+                    for (let i = 0; i < obj1[key].length; i++) {
+                        let arrItem = obj1[key][i];
+                        if (arrItem !== obj2[key][i]) {
+                            return false;
+                        }
+                    }
+                }
+                else if (obj1[key] !== obj2[key]) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        console.log("BONUS2:");
+        if (compareObjects({ a: 1, b: [1, 2] }, { a: 1, b: [1, 2] })) console.log("EQUAL");
+        else console.log("NOT EQUAL");
+
+        // General purpose compare, for any two objects/arrays at any depth.
+        function compareObjects2(obj1, obj2) {
+            // Compare Keys
+            let keys1 = Object.keys(obj1);
+            let keys2 = Object.keys(obj2);
+
+            if (keys1.length != keys2.length) return false;
+            for (let i = 0; i < keys1.length; i++) {
+                if (keys1[i] !== keys2[i]) return false;
+            }
+
+            // Compare values.
+            for (let i = 0; i < keys1.length; i++) {
+                let val1 = obj1[keys1[i]];
+                let val2 = obj2[keys1[i]];
+
+                if (typeof val1 == "object") {
+                    let objEqual = compareObjects2(val1, val2);  // Recursion!
+                    if (!objEqual) return false;
+                }
+                else {
+                    if (val1 !== val2) return false;
+                }
+            }
+
+            return true;
+        }
+        if (compareObjects2({ a: 1, b: [1, 2] }, { a: 1, b: [1, 2] })) console.log("EQUAL");
+        else console.log("NOT EQUAL");
+
+        // Marshall the data into a flat string, and then compare.
+        function compareObjects3(obj1, obj2) {
+            return JSON.stringify(obj1) === JSON.stringify(obj2);
+        }
+        if (compareObjects3({ a: 1, b: [1, 2] }, { a: 1, b: [1, 2] })) console.log("EQUAL");
+        else console.log("NOT EQUAL");
+
+    </script>
+</body>
+
+</html>

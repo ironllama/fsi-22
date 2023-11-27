@@ -107,7 +107,7 @@ How many blocks away is the first location you visit twice?
 
                 // Test if we intersected with our past
                 if (history.some(v => v[0] === currPos[0] && v[1] === currPos[1])) {
-                    // console.log("RETRACED AT:", currPos);
+                    console.log("RETRACED AT:", currPos, history);
                     let totalDistance = Math.abs(currPos[0]) + Math.abs(currPos[1]);
                     console.log("TOTAL2:", totalDistance);
                     break instructionsLoop;

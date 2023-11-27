@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const data = [
+            {
+                id: 1,
+                name: "teddy bear",
+                description: "A cute cuddly teddy bear. It's soft fur makes it extra huggable. Great for young children.",
+                price: 13.99,
+            },
+            {
+                id: 2,
+                name: "dumbbell",
+                description: "A sturdy 10kg dumbbell. Great for beginners and experts alike!",
+                price: 25.00,
+                weightKg: 10,
+            },
+            {
+                id: 3,
+                name: "apples",
+                description: "A large box of fresh apples. Red Fuji.",
+                price: 12.50,
+                weightKg: 3,
+                origin: "Japan"
+            },
+            {
+                id: 4,
+                name: "men's jeans",
+                description: "Fashionable and durable jeans.",
+                price: 77.70,
+                brand: "Lucky",
+                fits: ["loose", "skinny", "relaxed"],
+                sizes: [28, 30, 32, 34]
+            }
+        ];
+
+        // Print out "teddy bear" without typing or pasting "teddy bear".
+        let teddyObj = data[0];
+        console.log(teddyObj.name);
+        // console.log(data[0].name);  // Same as above.
+
+        // Print out "relaxed" without typing or pasting "relaxed".
+        let jeansObj = data[3];
+        let jeansFits = jeansObj.fits;  // Or jeans['fits']
+        console.log(jeansFits[2]);  // Or jeansFits.at(-1)
+        // console.log(data[3].fits[2]);  // Same as all of above, without intermediate variables
+
+        // Print out all of the product names without typing or pasting them.
+        for (let i = 0; i < data.length; i++) {
+            console.log(data[i].name);
+        }
+
+        for (let item of data) {
+            console.log(item.name);
+        }
+
+        data.forEach((item) => {
+            console.log(item.name);
+        });
+
+        data.forEach(function (item) {
+            console.log(item.name);
+        });
+
+        function displayNameFor(item) {
+            console.log(item.name);
+        }
+        data.forEach(displayNameFor);
+
+        // data.forEach(item => console.log(item.name));  // Shorter version.
+
+
+        // Calculate and print the total price of all items (using code).
+        let sum = 0;
+
+        data.forEach(item => {
+            sum += item.price;
+        });
+
+        for (let item of data) {
+            sum += item.price;
+        }
+
+        let pricesArr = [];
+        for (let i = 0; i < data.length; i++) {
+            pricesArr.push(data[i].price);
+        }
+        sum = pricesArr.reduce((a, c) => a + c, 0);
+        sum = data.reduce((a, v) => a + v.price, 0);  // Same as above.
+
+        for (let i = 0; i < data.length; i++) {
+            sum += data[i].price;
+        }
+
+        console.log("Final price is:", sum);
+
+
+        // Find the most expensive product (using code).
+        // Print its name and price in this format:
+        // bananas - $2.99
+
+        pricesArr.sort();
+        let mostExpensive = pricesArr[pricesArr.length - 1];  // Also, pricesArr.at(-1)
+        let objectName = "";
+        for (let item of data) {
+            if (item.price === mostExpensive) objectName = item.name;
+        }
+        console.log(`${objectName} - ${mostExpensive}`);
+
+        let mostExpensive2 = data[0];
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].price > mostExpensive2) {
+                mostExpensive2 = data[i];
+            }
+        }
+        console.log(`${mostExpensive2.name} - ${mostExpensive2.price}`);
+
+        let mostExpensiveProduct = data[0];  // Start with first object
+        data.forEach(item => {
+            if (item.price > mostExpensiveProduct.price) {
+                mostExpensiveProduct = item;
+            }
+        });
+        console.log("Expensive product is:", mostExpensiveProduct.name, mostExpensiveProduct.price);
+
+
+        // Create a new product and add it into the data array.
+        // Print the data array to prove your product got added.
+        data.push({
+            id: 5,
+            name: "a rabid goose",
+            description: "a good, mad and frothy",
+            cheap: 3.50
+        });
+
+        function Item(inName, inDescription, inPrice) {
+            this.id = data.length + 1;
+            this.name = inName;
+            this.description = inDescription;
+            this.price = inPrice;
+        }
+        let snickers = new Item("snickers", "it really satisfies", 100);
+        data.push(snickers);
+        let milkyway = new Item("milkyway", "I want to like it as much as Snickers, but...", 80);
+        data.push(milkyway);
+
+        console.log("DATA:", data);
+    </script>
+</body>
+
+</html>
