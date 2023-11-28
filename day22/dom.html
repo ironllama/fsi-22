@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Tree</title>
+    <style>
+        .square {
+            height: 150px;
+            width: 150px;
+            border-radius: 5px;
+            background-color: rgb(100, 100, 100);
+            display: inline-block;
+        }
+
+        .car {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .car>div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>We're Family</h1>
+    <p>Something about a movie and a family.</p>
+    <p>This is another movie, right?</p>
+    <div id="mustang"></div>
+    <div class="brian first"></div>
+    <div class="fast"></div>
+    <div class="furious">
+        <div id="dominic"></div>
+        <div id="letty">
+            <div class="brian second"></div>
+        </div>
+        <div id="deckard"></div>
+        <div id="owen"></div>
+    </div>
+    <div class="brian third"></div>
+    <script src="cars.js"></script>
+    <script>
+        const pElem1 = document.body.children[1];
+        console.log(pElem1);
+        const pElem2 = document.getElementsByTagName('p');
+        console.log(pElem2[0]);
+        const pElem3 = document.querySelector('p');
+        console.log(pElem3);
+        const pElem4 = document.querySelectorAll('p');
+        console.log(pElem4[0]);
+        const pElem5 = document.querySelector('p:nth-child(2)');
+        console.log(pElem5);
+
+        const mustang1 = document.body.children[3];
+        console.log(mustang1);
+        const mustang2 = document.getElementById("mustang");
+        console.log(mustang2);
+        const mustang3 = document.querySelector('#mustang');
+        console.log(mustang3);
+        // console.log(mustang);  // Good for debugging. Not good for production.
+
+        const furious1 = document.getElementsByClassName("furious");
+        console.log(furious1[0]);
+        const furious2 = document.querySelector(".furious");
+        console.log(furious2);
+        const furious3 = document.querySelectorAll(".furious");
+        console.log(furious3[0]);
+
+        const brian1 = furious2.querySelector(".brian");
+        console.log(brian1);
+        const brian2 = document.getElementsByClassName("brian");
+        console.log(brian2[1]);
+
+
+        console.log(window);
+        // window.location.href = "https://google.com";
+        let red = 100;
+
+        // Get the parent the element.
+        const brian3 = document.querySelector(".brian.third");
+
+        // Create 20 square elements.
+        for (let i = 0; i < 20; i++) {
+            // Create the new element.
+            const newSquare = document.createElement("div");
+            newSquare.className = "square";
+            newSquare.style.backgroundColor = "rgb(" + red + ", 100, 100)";
+
+            brian3.appendChild(newSquare);  // Add under brian
+            red += 5;  // Make the next one a little redder
+        }
+
+        // With innerHTML -- same as above. Faster to write, slower to run.
+        red = 100;
+        let accHTML = "";
+        for (let i = 0; i < 20; i++) {
+            accHTML += '<div class="square" style="background-color: rgb(' + red + ', 100, 100);"></div>';
+            red += 5;  // Make the next one a little redder
+        }
+        brian3.innerHTML = accHTML;
+
+        const carsGroup = document.createElement("div");
+        carsGroup.className = "carsGroup";
+
+        for (let car of allVehicles) {
+            const { manufacturer, model, color } = car;
+
+            const carMakerText = document.createTextNode(manufacturer);
+            const carModelText = document.createTextNode(model);
+            console.log("MAKER:", carMakerText);
+
+            const carMaker = document.createElement("div");
+            carMaker.className = "carMaker";
+            carMaker.appendChild(carMakerText);
+
+            const carModel = document.createElement("div");
+            carModel.className = "carModel";
+            carModel.appendChild(carModelText);
+
+            const carElem = document.createElement("div");
+            carElem.className = "car";
+            carElem.style.backgroundColor = color;
+
+            carElem.appendChild(carMaker);
+            carElem.appendChild(carModel);
+
+            carsGroup.append(carElem);
+        }
+
+        document.body.appendChild(carsGroup);
+    </script>
+</body>
+
+</html>
