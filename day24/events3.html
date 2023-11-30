@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Review</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .square {
+            height: 200px;
+            width: 200px;
+            border-radius: 10px;
+            background-color: goldenrod;
+            transition: 0.5s;
+        }
+
+        .smallSquare {
+            height: 50px;
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="square"></div>
+    <div class="square" style="background-color: firebrick;"></div>
+    <script>
+        // Get references to both the square divs in the DOM.
+        let allSquares = document.querySelectorAll(".square");
+
+        // Add an event listener for each of the squares.
+        for (let i = 0; i < allSquares.length; i++) {
+            let square = allSquares[i];
+            // Assign an event handling function (resizeSquare) for 'click' events to the element (div.square)
+            square.addEventListener('click', resizeSquare);
+        }
+
+        // The event handler.
+        // Because I added a 'click' event type when assigning the addEventListener, the 'myEvent' is a PointerEvent
+        function resizeSquare(myEvent) {
+            console.log("EVENT", myEvent);
+
+            let mySquare = myEvent.target
+            // mySquare is the element (div.square) that generated the click event.
+            mySquare.classList.toggle("smallSquare");
+
+            // Same as toggle.
+            // if (mySquare.classList.contains("smallSquare")) {
+            //     mySquare.classList.remove("smallSquare");
+            // }
+            // else {
+            //     mySquare.classList.add("smallSquare");
+            // }
+
+            // Same as toggle. Manipulate the class names as a string directly.
+            // let smallPos = mySquare.className.indexOf("smallSquare");
+            // if (smallPos === -1) {
+            //     mySquare.className += " smallSquare";
+            // }
+            // else {
+            //     mySquare.className = mySquare.className.substring(0, smallPos) + mySquare.className.substring(smallPos + 11);
+            // }
+        }
+
+        // Alternative to above, but don't use "this" references with arrow function in event handlers.
+        // function resizeSquare() {
+        //     // The "this" reference is the element (div.square) that generated the click event.
+        //     this.classList.toggle("smallSquare");
+        // }
+    </script>
+</body>
+
+</html>

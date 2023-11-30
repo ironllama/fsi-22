@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Review</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .square {
+            height: 200px;
+            width: 200px;
+            border-radius: 10px;
+            background-color: goldenrod;
+            transition: 0.5s;
+        }
+
+        .smallSquare {
+            height: 50px;
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="square"></div>
+    <div class="square" style="background-color: firebrick;"></div>
+    <!-- <div class="square" onclick="somefunction(event)"></div> -->
+    <div>
+        <label for="message">Message: </label>
+        <input id="message" type="text" />
+        <input type="button" value="New" />
+    </div>
+    <script>
+        // let yellowSquare = document.querySelector(".square");
+        // let messageInput = document.getElementById("message");
+        let messageInput = document.querySelector("#message");
+        let inputButton = document.querySelector("[type=button]");
+        let allSquares = document.querySelectorAll(".square");
+
+        // If you want to use named anonymous functions, be sure to initialize
+        // the function before you try to assign it. (eg. addEventListener)
+        // let finishedWithInput = function () {
+        //     console.log("Another function.");
+        // }
+
+        // yellowSquare.onclick = somefunction;
+        // yellowSquare.addEventListener('click', somefunction);
+        messageInput.addEventListener('keyup', handleMessage);
+        messageInput.addEventListener('keydown', preventMessage);
+        inputButton.addEventListener('click', finishedWithInput);
+
+        for (let i = 0; i < allSquares.length; i++) {
+            let square = allSquares[i];
+            // square.addEventListener('click', somefunction);
+            // square.addEventListener('click', function () {
+            //     console.log("Anonymous function!");
+            //     this.classList.toggle("smallSquare");
+            // });
+            square.addEventListener('click', (e) => {
+                console.log("Anonymous function!", this);
+                // this.classList.toggle("smallSquare");
+                e.target.classList.toggle("smallSquare");
+            });
+        }
+        // Same as above.
+        // allSquares.forEach(square => square.addEventListener('click', somefunction));
+
+
+        // let showSmallNext = true;
+
+        function preventMessage(event) {
+            if (event.key !== "Enter") {
+                event.preventDefault();  // Stop any other letters from showing.
+            }
+        }
+
+        function handleMessage(coolKey) {
+            // console.log("handleMessage function.", coolKey);
+
+            if (coolKey.key === "Enter") {
+                console.log("ENTER PRESSED");
+                finishedWithInput();
+            }
+            else {
+                messageInput.value = "No";
+            }
+        }
+
+        function finishedWithInput() {
+            console.log("finishedWithInput function.");
+        }
+
+        // function somefunction(event) {
+        //     console.log("I'm some function.", event, this);
+        //     // yellowSquare.onclick = null;
+
+        //     // if (showSmallNext) {
+        //     //     yellowSquare.style.width = "50px";
+        //     //     yellowSquare.style.height = "50px";
+        //     // }
+        //     // else {
+        //     //     yellowSquare.style.width = "200px";
+        //     //     yellowSquare.style.height = "200px";
+        //     // }
+
+        //     // yellowSquare.classList.toggle("smallSquare");
+        //     event.target.classList.toggle("smallSquare");
+        //     // this.classList.toggle("smallSquare");
+
+        //     // showSmallNext = !showSmallNext;
+        //     // yellowSquare.removeEventListener('click', somefunction);
+        // }
+
+    </script>
+</body>
+
+</html>
