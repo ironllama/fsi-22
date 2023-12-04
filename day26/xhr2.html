@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XHR 2</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 3rem;
+            background-color: #eeedef;
+        }
+
+        .imageWrapper {
+            height: 300px;
+            width: 300px;
+            border-radius: 5px;
+            background-color: grey;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        img {
+            height: 300px;
+            /* object-fit: cover; */
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: -223px;
+            bottom: 0;
+            right: 0;
+            opacity: 0.8;
+            display: none;
+        }
+
+        button {
+            padding: 0.5rem 3rem;
+            font-size: 1.5rem;
+            font-weight: inherit;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="imageWrapper">
+        <img src="">
+        <img class="overlay" src="https://blog.hubspot.com/hs-fs/hubfs/ezgif-3-5a4b29c94d53-1.gif">
+    </div>
+    <button>Next Dog</button>
+    <script>
+        // document.getElementsByTagName("img")[0]
+        const imageElem = document.querySelector("img");
+        const buttonElem = document.querySelector("button");
+        const overlayElem = document.querySelector(".overlay");
+
+        function getDog() {
+            // imageElem.src = "https://blog.hubspot.com/hs-fs/hubfs/ezgif-3-5a4b29c94d53-1.gif";
+            overlayElem.style.display = "block";
+
+            // Initiate a request for a new dog picture.
+            const myXML = new XMLHttpRequest();
+            myXML.open("GET", "https://dog.ceo/api/breeds/image/random");
+            myXML.addEventListener("load", function () {
+                // console.log(myXML.responseText);
+                const dogMessage = JSON.parse(myXML.responseText);
+                // console.log(dogMessage);
+
+                imageElem.setAttribute("src", dogMessage.message);
+            });
+            myXML.send();
+        }
+        getDog();
+
+        buttonElem.addEventListener("click", getDog);
+        imageElem.addEventListener("load", function () {
+            overlayElem.style.display = "none";
+        })
+    </script>
+</body>
+
+</html>
