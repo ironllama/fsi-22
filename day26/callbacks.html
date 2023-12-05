@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callbacks</title>
+</head>
+
+<body>
+    <div class="number"></div>
+    <div class="number"></div>
+    <div class="number"></div>
+    <div class="number"></div>
+    <script>
+        let allNums = [45, 23, 64, 2, 6, 45];
+        allNums.sort(sortMyNums);
+
+        function sortMyNums(a, b) {
+            console.log("SORTING:")
+            return a - b;
+            // if (a < b) return -1;
+            // else if (a > b) return 1;
+            // else return = 0;
+        };
+
+        console.log("SORTED:", allNums);
+
+        let allObjects = [
+            {
+                manufacturer: "Jeep",
+                model: "911",
+                fuel: "Hybrid",
+                color: "gold",
+                productionYear: 1998,
+                registrationNumber: "PP16GHL",
+            },
+            {
+                manufacturer: "Bugatti",
+                model: "Spyder",
+                fuel: "Hybrid",
+                color: "purple",
+                productionYear: 2009,
+                registrationNumber: "UE91KFX",
+            },
+            {
+                manufacturer: "Bugatti",
+                model: "Focus",
+                fuel: "Electric",
+                color: "tan",
+                productionYear: 1994,
+                registrationNumber: "IN71IIR",
+            },
+            {
+                manufacturer: "Jeep",
+                model: "Impala",
+                fuel: "Gasoline",
+                color: "magenta",
+                productionYear: 2015,
+                registrationNumber: "BP23PLN",
+            },
+            {
+                manufacturer: "Audi",
+                model: "Accord",
+                fuel: "Diesel",
+                color: "orange",
+                productionYear: 2015,
+                registrationNumber: "ON63EIQ",
+            },
+            {
+                manufacturer: "Audi",
+                model: "Model Y",
+                fuel: "Diesel",
+                color: "black",
+                productionYear: 2014,
+                registrationNumber: "ZE75KNY",
+            },
+        ];
+        allObjects.sort((a, b) => {
+            if (a.manufacturer < b.manufacturer) return -1;
+            else if (a.manufacturer < b.manufacturer) return 1;
+            else return 0;
+        });
+
+        console.log("OBJECTS:", allObjects);
+
+        allObjects.map(item => item.fullName = item.manufacturer + " " + item.model);
+
+        // document.body.addEventListener("keyup", () => {
+        document.body.addEventListener("keyup", function () {
+            console.log(this);
+        });
+
+        const allNumberElems = document.querySelectorAll(".number");
+        let number = 0;
+        // allNumberElems.forEach(function (numberElem) {
+        let noReturn = Array.from(allNumberElems).map((numberElem) => {
+            console.log(this);
+            number += 1;
+            numberElem.innerHTML = number;
+        });
+        console.log("NORETURN:", noReturn);
+    </script>
+</body>
+
+</html>

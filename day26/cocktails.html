@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XHR 4</title>
+    <link rel="stylesheet" href="combo.css">
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 2rem;
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        #results {
+            height: 300px;
+        }
+
+        #results>img {
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="overlay"></div>
+    <div id="results"></div>
+    <script src="combo.js"></script>
+    <script>
+        const overlayElem = document.querySelector(".overlay");
+        const resultsElem = document.querySelector("#results");
+
+        const myOptions = {
+            fetchStuff: getDrinksFromAPI,
+            goodItem: showDrinkPic
+        }
+        const comboObj = createCombo(myOptions);
+
+        overlayElem.after(comboObj.element);
+
+        let drinkList = [];
+        function getDrinksFromAPI(queryStr) {
+            const api = new XMLHttpRequest();
+            api.open("GET", "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + queryStr);
+            api.addEventListener("load", function () {
+                drinkList = JSON.parse(api.responseText).drinks;
+                // console.log("AJAX:", drinkList);
+
+                if (drinkList) {
+                    // drinkList = drinkObj.map(drink => drink.strDrink);
+                    const drinkNamesOnly = [];
+                    for (let i = 0; i < drinkList.length; i++) {
+                        // console.log("SEE:", drinkList[i].strDrink);
+                        drinkNamesOnly.push(drinkList[i].strDrink);
+                    }
+                    // console.log("NAMES:", drinkNamesOnly);
+                    comboObj.matchesReceived(drinkNamesOnly);
+                }
+            })
+            api.send();
+        }
+
+        function showDrinkPic(drinkName) {
+            // const drinkFullDetails = drinkList.find(drink => drink.strName === drinkName);
+            let drinkFullDetails = "";
+            for (let i = 0; i < drinkList.length; i++) {
+                if (drinkList[i].strDrink === drinkName) {
+                    drinkFullDetails = drinkList[i];
+                    break;
+                }
+            }
+
+            if (drinkFullDetails) {
+                resultsElem.innerHTML = `<img src="${drinkFullDetails.strDrinkThumb}" alt="${drinkName}">`;
+            }
+        }
+    </script>
+</body>
+
+</html>
