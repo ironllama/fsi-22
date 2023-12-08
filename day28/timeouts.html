@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timers</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 3rem;
+            background-color: #eeedef;
+            overflow: hidden;
+        }
+
+        .squareWrapper {
+            width: 100%;
+        }
+
+        .square {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            background-color: goldenrod;
+            /* transform: translateX(0vh);
+            transition: 3s; */
+        }
+
+        /* .square:hover {
+            transform: translateX(calc(100vh - 100px));
+        } */
+    </style>
+</head>
+
+<body>
+    <div id="time">1</div>
+    <button>Reset</button>
+    <div class="squareWrapper">
+        <div class="square" style="transform: translateX(50px);"></div>
+    </div>
+    <script>
+        const timeElem = document.querySelector("#time");
+        const buttonElem = document.querySelector("button");
+        const squareBox = document.querySelector(".square");
+
+        let currentTime = 1;
+        // setTimeout(() => {
+        let intervalId = setInterval(() => {
+            currentTime += 1;
+            timeElem.innerHTML = currentTime;
+
+            if (currentTime === 100) {
+                clearInterval(intervalId);
+            }
+        }, 1000);
+
+        buttonElem.addEventListener("click", function () {
+            console.log("RESET!");
+            currentTime = 0;
+        });
+
+        const vw = document.body.offsetWidth;
+        // squareBox.style.transform = "translateX(" + 300 + "px)";
+
+        let goRight = true;
+        let numTimes = 0;
+        let pos = 0;
+        function animate() {
+            // Set the direction after i passes the screen treshholds.
+            if (pos >= (vw - 200)) goRight = false;
+            else if (pos <= 0) goRight = true;
+
+            // Adjust the values for the next iteration.
+            if (goRight) pos += 10;
+            else pos -= 10;
+
+            // pos += 10;
+            // if (pos >= vw) pos = -200;
+
+            // Move the square.
+            squareBox.style.transform = "translateX(" + pos + "px)";
+
+            // Track the number of times this has run.
+            numTimes += 1;
+            if (numTimes > 10000) return;  // Stop the recursion early.
+
+            // Do all this again after x milliseconds.
+            setTimeout(() => {
+                animate();
+            }, 10);
+        }
+        animate();
+    </script>
+</body>
+
+</html>

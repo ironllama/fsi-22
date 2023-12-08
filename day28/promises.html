@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Using callbacks.
+        function sayHelloCallback(helloFinished) {
+            setTimeout(() => {
+                helloFinished("Hello.");
+            }, 2000);
+        }
+
+        function gotSomethingBack(result) {
+            console.log("CALLBACK RESULT:", result);
+        }
+
+        console.log("Calling sayHelloCallback...");
+        sayHelloCallback(gotSomethingBack);
+        console.log("At the end of the callback block.");
+
+
+        // Using Promises.
+        function sayHelloPromises() {
+            function innerPromiseFunction(resolve, reject) {
+                setTimeout(() => {
+                    const notGood = Math.random();
+                    if (notGood > .5) resolve("Hello.");
+                    else reject("BROKEN");
+                }, 2000);
+            }
+            return new Promise(innerPromiseFunction);
+        }
+
+        console.log("Calling sayHelloPromises...");
+        let promiseOfHello = sayHelloPromises();
+        // Lots of code can be here...
+        // ...
+        // Sometime later...
+        // promiseOfHello.then(gotSomethingBack);  // Can be used. Not as common?
+        promiseOfHello
+            .then((result) => {
+                console.log("PROMISES RESULT:", result);
+            })
+            .catch((bad) => {
+                console.log("PROMISES CATCH:", bad);
+            });
+
+        console.log("At the end of the Promises block.");
+        console.log(promiseOfHello);
+
+
+        // Using async/await.
+        async function sayHelloAwait() {
+            try {
+                let promiseOfHello = await sayHelloPromises();  // Using the same Promise function!
+                console.log("AWAIT RESULT (sayHelloAwait):", promiseOfHello);
+                // Other things you want to happen after sayHelloPromises is finished.
+                // ...
+                // Continues...
+                console.log("At the end of the sayHelloAwait block.");
+                return promiseOfHello;  // Return is wrapped in the Promise resolve.
+            }
+            catch (err) {
+                console.log("AWAIT CATCH (sayHelloAwait):", err);
+                return ("AWAIT CATCH:", err);  // Return is wrapped in the Promise reject.
+            }
+        }
+        console.log("Calling sayHelloAwait...");
+        let result = sayHelloAwait();
+        result
+            .then(res => console.log("AWAIT RETURN (calling block):", res))
+            .catch(err => console.log("AWAIT CATCH (calling block):", err));
+
+        console.log("AWAIT RESULT (calling block):", result);
+        console.log("At the end of the await calling block.");
+    </script>
+</body>
+
+</html>

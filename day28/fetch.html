@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch</title>
+</head>
+
+<body>
+    <script>
+        // const stuff = fetch("http://universities.hipolabs.com/search?country=Korea,%20Republic%20of");
+        // console.log("STUFF:", stuff);
+
+        // stuff
+        //     // .then(res => {
+        //     //     console.log("RES:", res);
+        //     //     // let jsonRes = res.json();  // Returns a Promise.
+        //     //     // console.log("JSON RES:", jsonRes);
+        //     //     // jsonRes
+        //     //     //     .then(res => console.log("JSON RES THEN:", res))
+        //     //     //     .catch(err => console.log("JSON ERR:", err));
+        //     //     return res.json();
+        //     // })
+        //     .then(res => res.json())
+        //     .then(jsonRes => console.log("JSON RES THEN:", jsonRes))
+        //     .catch(err => {
+        //         console.log("ERROR:", err);
+        //     })
+        fetch("http://universities.hipolabs.com/search?country=Korea,%20Republic%20of")
+            .then(res => res.json())
+            .then(jsonRes => {
+                console.log("JSON RES THEN:", jsonRes);
+                handleData(jsonRes);
+            })
+            // .then(res => res.text())
+            // .then(textRes => {
+            //     console.log("TEXT RES THEN:", textRes);
+            //     const jsonObj = JSON.parse(textRes);
+            //     console.log("JSON OBJ:", jsonObj);
+            // })
+            .catch(err => console.log("ERROR:", err));
+
+        console.log("Finished with calling fetch. Continuing...");
+
+        function handleData(allSchools) {
+            let htmlStr = "";
+            allSchools.forEach(school => {
+                htmlStr += `<div>${school.name}</div>`;
+            });
+            document.body.innerHTML = htmlStr;
+        }
+    </script>
+</body>
+
+</html>

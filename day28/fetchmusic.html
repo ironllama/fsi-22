@@ -1,0 +1,10 @@
+<script>
+    // fetch("https://musicbrainz.org/ws/2/artist?query=def+leppard&limit=50&fmt=json")
+    // fetch("https://musicbrainz.org/ws/2/artist/7249b899-8db8-43e7-9e6e-22f1e736024e?fmt=json")
+    // fetch("https://musicbrainz.org/ws/2/artist?id=7249b899-8db8-43e7-9e6e-22f1e736024e&fmt=json")
+    fetch("https://musicbrainz.org/ws/2/artist?query=tupac&limit=50&fmt=json")
+        .then(res => res.json())
+        .then(res => {
+            console.log("RES", res);
+        });
+</script>
