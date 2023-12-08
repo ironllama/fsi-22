@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regex time</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        const str2 = "sdfcdskvsdm";
+        const str3 = "AAZddASvKlkfec";
+        const str4 = "05678298818";
+
+        const str5 = "abbbbbb";
+        const str6 = "abbc";
+        const str7 = "ab";
+
+        const str9 = "ac";
+
+        const str10 = "abb";
+        const str11 = "abbb";
+        const str12 = "abbbbb";
+
+        const str13 = "aaNBB";
+        const str14 = "aaaaaaA";
+        const str15 = "AANBB";
+        const str16 = "aaaabbb";
+
+        const str17 = "AAvdes_vEFZc_cdsAZD";
+        const str18 = "ZSKJZ";
+        const str19 = "qwerty_uiop_cvbn";
+
+        console.log("STR17:");
+        const myRegEx = /[a-zA-Z]+_([a-zA-Z]+)_[a-zA-Z]+/g
+        // let matchCaptures = str17.matchAll(myRegEx);
+        // for (let caught of matchCaptures) {
+        //     console.log(caught);
+        // }
+        let newStr = str17.replace(myRegEx, "I've found my $1");
+        console.log(newStr);
+
+        const str = "This is Maria Cruz showing up for work!";
+        const re = /(M\w+)\s(C\w+)/;
+        const newstr = str.replace(re, "$2, $1");
+        console.log(newstr);
+
+
+        // // 1. match str2 but not str3 and not str4
+        // let expr = /^[a-z]+$/;
+        // console.log("STR2:", str2.match(expr))
+        // console.log("STR3:", str3.match(expr))
+        // console.log("STR4:", str4.match(expr))
+
+        // // 2. match str4 but not str2 and not str3
+        // expr = /^[0-9]+/;
+        // console.log("STR2:", str2.match(expr))
+        // console.log("STR3:", str3.match(expr))
+        // console.log("STR4:", str4.match(expr))
+
+        // // 3. match str2 and str3 but not str4
+        // expr = /^[^0-9]+/;
+        // console.log("STR2:", str2.match(expr))
+        // console.log("STR3:", str3.match(expr))
+        // console.log("STR4:", str4.match(expr))
+
+        // // 4. match str5 str6 and str7 but not str9
+        // expr = /^ab+c?/;
+        // console.log("STR5:", str5.match(expr))
+        // console.log("STR6:", str6.match(expr))
+        // console.log("STR7:", str7.match(expr))
+        // console.log("STR9:", str9.match(expr))
+
+        // // 5. match str11 and str12 but not str10
+        // expr = /^abbb+$/;
+        // console.log("STR10:", str10.match(expr))
+        // console.log("STR11:", str11.match(expr))
+        // console.log("STR12:", str12.match(expr))
+
+        // // 6. match str13 and str14 but not str15 and str16
+        // expr = /^[a-z]+[A-Z]+?/;
+        // console.log("STR13:", str13.match(expr))
+        // console.log("STR14:", str14.match(expr))
+        // console.log("STR15:", str15.match(expr))
+        // console.log("STR16:", str16.match(expr))
+
+        // // 7. match str17 and str18 and str19
+        // expr = /^.+$/;
+        // console.log("STR17:", str17.match(expr))
+        // console.log("STR18:", str18.match(expr))
+        // console.log("STR19:", str19.match(expr))
+    </script>
+</body>
+
+</html>

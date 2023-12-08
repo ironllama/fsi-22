@@ -1,0 +1,234 @@
+<script>
+    // ===========================
+    // Question #1
+    // ===========================
+    // Write a JavaScript function to test the first character of a string is uppercase or not.
+
+    function is1stLetterUppercase(str) {
+        let uppercaseRegex = /^[A-Z]/;
+        return uppercaseRegex.test(str);
+    }
+
+    // ===========================
+    // Question #2
+    // ===========================
+    // Write a JavaScript program to check a credit card number.(Example : credit card number ( format 9999-9999-9999-9999 )
+
+    function isCreditCard(str) {
+        // let ccRegex = /^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}/;
+        // let ccRegex = /^([0-9]{4}-){3}[0-9]{4}$/;
+        let ccRegex = /^(\d{4}-){3}\d{4}$/;
+        return ccRegex.test(str);
+    }
+
+    // ===========================
+    // Question #3
+    // ===========================
+    // Write a pattern that matches e-mail addresses. The personal information part contains the following ASCII characters.
+
+    function matchEmail(str) {
+        let emailRegex =
+            /[a-z0-9!#$%&'*+\-/=?^_`{|}~]+(?:\.[a-z0-9!#$%&'*+\-/=?^_`{|}~]+)*@[a-z0-9._-]+\.[a-z]{2,6}/;
+        return str.match(emailRegex);
+    }
+
+    // ===========================
+    // Question #4
+    // ===========================
+    // Write a JavaScript program to search a date within a string.
+
+    function hasDate(str) {
+        // accepts dates in the YYYY-MM-DD format:
+        // 2022/08/13, 2022-08-13, 2022.08.13, 23/02/13
+        let dateRegex =
+            /([0-9]{2}|[0-9]{4})[-/.](0[1-9]|1[0-2])[-/.](0[1-9]|[1-2][0-9]|3[0-1])/g;
+        return str.match(dateRegex);
+    }
+
+    // ===========================
+    // Question #5
+    // ===========================
+    // Write a JavaScript program that works as a trim function (string) using regular expression.
+
+    function trim(str) {
+        return str.replace(/^\s+|\s+$/g, "");
+    }
+
+    // ===========================
+    // Question #6
+    // ===========================
+    // Write a JavaScript program to count number of words in string.
+
+    function countWords(str) {
+        // remove start and end white-space
+        str = str.replace(/^\s+|\s+$/g, "");
+        // convert 2 or more spaces to 1
+        str = str.replace(/[ ]{2,}/gi, " ");
+        // exclude newline with a start spacing
+        str = str.replace(/\n /, "\n");
+        return str.split(" ").length;
+    }
+
+    function countWordsV2(str) {
+        return str.match(/\b\w*\b/g).length;
+    }
+
+    // ===========================
+    // Question #7
+    // ===========================
+    // Write a JavaScript function to check whether a given value is IP value or not.
+
+    function isIp(str) {
+        let ipRegex =
+            /^(([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/;
+        return ipRegex.test(str);
+    }
+
+    // ===========================
+    // Question #8
+    // ===========================
+    // Write a JavaScript function to count the number of vowels in a given string.
+
+    function vowelCount(str) {
+        return str.match(/[aeiou]/gi).length;
+    }
+
+    // ===========================
+    // Question #9
+    // ===========================
+    // Write a JavaScript function to check whether a given value is a valid url or not.
+
+    function isValidURL(str) {
+        let urlRegex =
+            /^(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})$/gi;
+        return urlRegex.test(str);
+    }
+
+    // ===========================
+    // Question #10
+    // ===========================
+    // Write a JavaScript function to check whether a given value is alpha numeric or not.
+
+    function isAlphaNumeric(str) {
+        let alphaNumericRegex = /^[a-z0-9]+$/i;
+        return alphaNumericRegex.test(str);
+    }
+
+    // ===========================
+    // Question #11
+    // ===========================
+    // Write a JavaScript function to check whether a given value is a time string or not.
+
+    function isTime(str) {
+        let timeRegex = /^(2[0-3]|[01]?[0-9]):([0-5]?[0-9]):([0-5]?[0-9])$/;
+        return timeRegex.test(str);
+    }
+
+    // ===========================
+    // Question #12
+    // ===========================
+    // Write a JavaScript function to check whether a given value is a US zip code or not.
+
+    function isUSZipCode(str) {
+        let zipRegex = /^[0-9]{5}(-[0-9]{4})?$/;
+        return zipRegex.test(str);
+    }
+
+    // ===========================
+    // Question #13
+    // ===========================
+    // Write a JavaScript function to check whether a given value is a UK Post Code or not.
+
+    function isUKZipCode(str) {
+        let zipRegex =
+            /^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})$/;
+        return zipRegex.test(str);
+    }
+
+    // ===========================
+    // Question #14
+    // ===========================
+    // Write a JavaScript function to check whether a given value is a Canada Post Code or not.
+
+    function isCanadaPostCode(str) {
+        let zipRegex =
+            /^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i;
+        return zipRegex.test(str);
+    }
+
+    // ===========================
+    // Question #15
+    // ===========================
+    // Write a JavaScript function to check whether a given value is a US social security number or not.
+
+    function isSSNum(str) {
+        let ssRegex = /^(?!000|666)[0-8][0-9]{2}-(?!00)[0-9]{2}-(?!0000)[0-9]{4}$/;
+        return ssRegex.test(str);
+    }
+
+    // ===========================
+    // Question #16
+    // ===========================
+    // Write a JavaScript function to check whether a given value is a hexadecimal value or not.
+
+    function isHexadecimal(str) {
+        let hexRegex = /^[0-9a-f]+$/i;
+        return hexRegex.test(str);
+    }
+
+    // ===========================
+    // Question #17
+    // ===========================
+    // Write a JavaScript function to check whether a given value is a hexcolor value or not.
+
+    function isHexColor(str) {
+        let hexColorRegex = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
+        return hexColorRegex.test(str);
+    }
+
+    // ===========================
+    // Question #18
+    // ===========================
+    // Write a JavaScript function to check whether a given value represents a domain or not.
+
+    function isDomain(str) {
+        let domainRegex = /^[a-z0-9]+([-.]{1}[a-z0-9]+)*\.[a-z]{2,6}$/i;
+        return domainRegex.test(str);
+    }
+
+    // ===========================
+    // Question #19
+    // ===========================
+    // Write a JavaScript function to check whether a given value is html or not.
+
+    function isHTML(str) {
+        let htmlRegex = /(<([^>]+)>)/gi;
+        return htmlRegex.test(str);
+    }
+
+    // ===========================
+    // Question #20
+    // ===========================
+    // Write a JavaScript function to check a given value contains alpha, dash and underscore.
+
+    function isAlpha_Dash() {
+        // (?=.*[a-z0-9])(?=.*-)(?=.*\_)[a-z0-9_\-]+
+        let regexp = /^[a-z0-9_]$/i;
+        return regexp.test(str);
+    }
+
+    // ===========================
+    // Question #21
+    // ===========================
+    // Write a JavaScript function to print an integer with commas as thousands separators.
+
+    function addCommas(num) {
+        if (typeof num !== "number") return false;
+        let numParts = num.toString().split(".");
+        numParts[0] = numParts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return numParts.join(".");
+    }
+
+    // ?= - Positive Lookahead
+    // ?! - Negative Lookahead
+</script>
