@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get vs Post</title>
+</head>
+
+<body>
+    <!-- <form method="get" action="https://nowhere.com/something"> -->
+    <form method="post" action="https://nowhere.com/something">
+        <input type="text" name="id" value="8483">
+        <input type="color" name="color" value="#FF0000">
+        <input type="text" name="size" value="small">
+        <button>Send it over!</button>
+    </form>
+    <script>
+        // const getXhr = new XMLHttpRequest();
+        // getXhr.open("GET", "https://nowhere.com/something?id=8483&color=white&size=small");
+        // getXhr.addEventListener("load", () => {
+        //     console.log("GET SOMETHING");
+        // });
+        // getXhr.send();
+
+        // const postXhr = new XMLHttpRequest();
+        // postXhr.open("POST", "https://nowhere.com/something");
+        // postXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        // postXhr.addEventListener("load", () => {
+        //     console.log("POST SOMETHING");
+        // });
+        // postXhr.send("id=8483&color=white&size=small");
+
+        const myForm = document.querySelector("form");
+        myForm.addEventListener("submit", function (event) {
+            console.log("Trying to submit...");
+
+            const paramsArray = [];
+            paramsArray.push("id=" + document.querySelector("input:first-child").value);
+            paramsArray.push("color=" + document.querySelector("input:nth-child(2)").value);
+            paramsArray.push("size=" + document.querySelector("input:nth-child(3)").value);
+            const paramsStr = paramsArray.join("&");
+            console.log("PARAMS:", paramsStr);
+
+            // return false;
+            event.preventDefault();
+        });
+
+        const myButton = document.querySelector("button");
+        myButton.addEventListener("click", function (event) {
+            // Validation of data
+            let valid = true;
+
+            const myFormData = new FormData(myForm);
+            console.log("FORM:", myFormData.get("size"));
+            const mySize = myFormData.get("size");
+            if (mySize !== "small") valid = false;
+
+            if (valid) {
+                myFormData.append("height", "tall");
+
+                // const postXhr = new XMLHttpRequest();
+                // postXhr.open("POST", "https://nowhere.com/something");
+                // postXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                // postXhr.addEventListener("load", () => {
+                //     console.log("POST SOMETHING");
+                // });
+                // postXhr.send(myFormData);
+
+                // Fetch w/ POST and standard Form Data
+                // fetch("https://nowhere.com/something", {
+                //     method: "POST",
+                //     body: myFormData,
+                // })
+                //     .then(res => console.log("POST SOMETHING"));
+
+                // Fetch w/ POST and JSON object from Form Data
+                const newFormObj = {};
+                for (let [key, value] of myFormData.entries()) {
+                    newFormObj[key] = value;
+                }
+                const newFormJson = JSON.stringify(newFormObj);
+                console.log("FORM OBJ:", newFormJson);
+
+                fetch("https://nowhere.com/something", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',  // REQUIRED when sending JSON
+                    },
+                    body: newFormJson,
+                })
+                    .then(res => console.log("POST SOMETHING"));
+            }
+            else {
+                alert("Invalid size.");
+            }
+
+            event.preventDefault();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Ninjas</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+
+        #title {
+            font-size: 2.5rem;
+        }
+
+        .playArea {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        /* img {
+            max-width: 400px;
+            max-height: 300px;
+        } */
+
+        button {
+            padding: 0.5rem 2rem;
+            font-size: 1rem;
+            font-weight: inherit;
+            border: none;
+            border-radius: 5px;
+            background-color: bisque;
+            text-transform: capitalize;
+        }
+
+        #scoreTitle {
+            font-size: 1.5rem;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 6rem;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="title">Who do you think is taller?</div>
+    <div class="playArea">
+        <div id="left">
+            <!-- <img src=""> -->
+            <button></button>
+        </div>
+        <div id="right">
+            <!-- <img src=""> -->
+            <button></button>
+        </div>
+    </div>
+    <div id="scoreTitle">Score: <span id="score">0</span></div>
+    <div id="winOverlay" class="overlay">WIN</div>
+    <div id="loseOverlay" class="overlay">NOPE</div>
+    <div id="gameoverLay" class="overlay">
+        GAME OVER<br>
+        <div>
+            <span id="overScore"></span> / 10
+        </div>
+    </div>
+
+    <script>
+        // const leftImage = document.querySelector("#left img");
+        // const rightImage = document.querySelector("#right img");
+
+        const leftButton = document.querySelector("#left button");
+        const rightButton = document.querySelector("#right button");
+
+        const scoreElem = document.querySelector("#score");
+        const winElem = document.querySelector("#winOverlay");
+        const loseElem = document.querySelector("#loseOverlay");
+
+        const gameoverLay = document.querySelector("#gameoverLay");
+        const gameoverScore = document.querySelector("#overScore");
+
+        const NINJA_KEY = "Su4JLIQNivO/wvaBohLd8A==yhZbmG6XnYrncjfl";
+        // const NINJA_KEY = "e4cVT8BzEFD562z74IXKZg==qttxkrNa0ZYegkU8";
+
+        let celebrities = [];
+        let numCorrect = 0;
+
+        fetch("https://api.api-ninjas.com/v1/celebrity?min_height=0.1",
+            {
+                headers: {
+                    "X-Api-Key": NINJA_KEY,
+                }
+            }
+        )
+            .then(res => res.json())
+            .then(res => {
+                while (celebrities.length < 20) {
+                    const randIdx = Math.floor(Math.random() * res.length);
+                    const randomCelebrity = res[randIdx];
+                    celebrities.push(randomCelebrity);
+                    res.splice(randIdx, 1);  // To be sure not to pick the same guy again.
+                }
+                playRound();
+            });
+
+        let correctAnswer = "";
+        function playRound() {
+            // console.log("CELEBRITIES:", celebrities);
+            if (celebrities.length === 0) {
+                gameoverScore.innerHTML = numCorrect;
+                gameoverLay.style.display = "flex";
+            }
+            else {
+                let left = celebrities.pop();
+                let right = celebrities.pop();
+                // console.log("LEFT:", left, "RIGHT:", right);
+
+                leftButton.innerHTML = left.name;
+                rightButton.innerHTML = right.name;
+
+                correctAnswer = right.name;
+                if (left.height > right.height) correctAnswer = left.name;
+            }
+        }
+
+        function checkButton(event) {
+            if (event.target.innerHTML === correctAnswer) {
+                numCorrect += 1;
+                winElem.style.display = "flex";
+                setTimeout(() => {
+                    winElem.style.display = "none";
+                    playRound();
+                }, 1000);
+
+                scoreElem.innerHTML = numCorrect;
+            }
+            else {
+                loseElem.style.display = "flex";
+                setTimeout(() => {
+                    loseElem.style.display = "none";
+                    playRound();
+                }, 1000);
+            }
+        }
+
+        leftButton.addEventListener("click", checkButton);
+        rightButton.addEventListener("click", checkButton);
+    </script>
+</body>
+
+</html>

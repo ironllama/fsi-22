@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Ninjas</title>
+</head>
+
+<body>
+    <script>
+        const NINJA_KEY = "Su4JLIQNivO/wvaBohLd8A==yhZbmG6XnYrncjfl";
+        // const NINJA_KEY = "e4cVT8BzEFD562z74IXKZg==qttxkrNa0ZYegkU8";
+
+        fetch("https://api.api-ninjas.com/v1/celebrity?min_height=0.1",
+            {
+                headers: {
+                    "X-Api-Key": NINJA_KEY,
+                }
+            }
+        )
+            .then(res => res.json())
+            .then(res => {
+                console.log("RES:", res);
+            });
+    </script>
+</body>
+
+</html>

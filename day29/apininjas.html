@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Ninjas</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+            width: 80%;
+            text-align: center;
+        }
+
+        h3 {
+            margin-bottom: 0;
+        }
+
+        #question {
+            font-size: 2rem;
+        }
+
+        button {
+            padding: 0.5rem 2rem;
+            font-size: 1rem;
+            font-weight: inherit;
+            border: none;
+            border-radius: 5px;
+            background-color: bisque;
+        }
+
+        #answer {
+            display: none;
+            font-size: 1.5rem;
+            color: forestgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h3></h3>
+        <div id="question"></div>
+        <button>Show Answer</button>
+        <div id="answer"></div>
+    </main>
+    <script>
+        (() => {
+
+            const API_SERVER = "https://api.api-ninjas.com/v1/riddles";
+            const API_KEY_NAME = "X-Api-Key";
+            // const NINJA_KEY = "Su4JLIQNivO/wvaBohLd8A==yhZbmG6XnYrncjfl";
+            const NINJA_KEY = "e4cVT8BzEFD562z74IXKZg==qttxkrNa0ZYegkU8";
+
+            const titleElem = document.querySelector("h3");
+            const questionElem = document.querySelector("#question");
+            const answerElem = document.querySelector("#answer");
+            const buttonElem = document.querySelector("button");
+
+            buttonElem.addEventListener("click", function () {
+                answerElem.style.display = "block";
+                buttonElem.style.display = "none";
+            });
+
+            // const myXHR = new XMLHttpRequest()
+            // myXHR.open("GET", API_SERVER);
+            // myXHR.setRequestHeader(API_KEY_NAME, NINJA_KEY);
+            // myXHR.addEventListener("load", function () {
+            //     // Expecting something like this to come back:
+            //     // [
+            //     //     {
+            //     //         "title": "What Is It",
+            //     //         "question": "what is naked in the winter and dresed at summer and keeps on repeting this pattern?",
+            //     //         "answer": "a tree"
+            //     //     }
+            //     // ]
+            //     const { title, question, answer } = JSON.parse(myXHR.responseText)[0];
+
+            //     titleElem.innerHTML = title;
+            //     questionElem.innerHTML = question;
+            //     answerElem.innerHTML = answer;
+            // });
+            // myXHR.send();
+
+            const headers = {};
+            headers[API_KEY_NAME] = NINJA_KEY;
+
+            fetch(API_SERVER, { headers })  // Same as "headers: headers"
+                .then(res => res.json())
+                .then(res => {
+                    const { title, question, answer } = res[0];
+
+                    titleElem.innerHTML = title;
+                    questionElem.innerHTML = question;
+                    answerElem.innerHTML = answer;
+                });
+
+            function hello() {
+                console.log("Hello!");
+            }
+            hello();
+
+            (function () {
+                console.log("Hello");
+            })();
+
+            (() => {
+                console.log("Hello");
+            })();
+        })();
+    </script>
+</body>
+
+</html>
