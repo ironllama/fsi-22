@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 2rem;
+            gap: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <label for="ourColor">Choose a color, brah: </label>
+    <input id="ourColor" type="color">
+    <button>Give me the decimal.</button>
+    <div id="result"></div>
+    <script>
+        document.querySelector("button").addEventListener("click", () => {
+            let inColor = encodeURIComponent(document.querySelector("input").value);
+            console.log("COLOR:", inColor);
+            if (inColor) {
+                fetch("http://localhost:8080/day32/colorapi.php?colorHex=" + inColor)
+                    .then(res => res.text())
+                    .then(res => {
+                        result.innerHTML = res.split(", ").join(" - ");
+                    });
+            }
+        });
+    </script>
+</body>
+
+</html>
