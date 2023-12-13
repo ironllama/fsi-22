@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 2rem;
+            gap: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <label for="ourInput">Type you input: </label>
+    <input id="ourInput" type="text">
+    <button>Get me output.</button>
+    <div id="result"></div>
+    <script>
+        document.querySelector("button").addEventListener("click", () => {
+            let inputVal = encodeURIComponent(document.querySelector("input").value);
+            console.log("INPUT:", inputVal);
+            if (inputVal) {
+                fetch("http://localhost:8080/day33/getStuff.php?input=" + inputVal)
+                    .then(res => res.text())
+                    .then(res => {
+                        // result.innerHTML = res.split(", ").join(" - ");
+                        console.log(res);
+                        // let newDiv = document.createElement("div");
+
+                        // document.body.appendChild(newDiv);
+                        // newDiv.innerHTML = res;
+                        // runStuff();
+                        // document.body.innerHTML = res;
+
+                        // eval(res);
+
+                        let myScript = document.createElement("script");
+                        myScript.text = res;
+                        document.body.appendChild(myScript);
+                    });
+            }
+        });
+    </script>
+</body>
+
+</html>
