@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Post</title>
+</head>
+
+<body>
+    <form id="first" method="POST" action="firstpost.php">
+        <input type="text" name="fruit">
+        <input type="date" name="expiration">
+        <input type="submit" value="SEND">
+    </form>
+
+    <form id="second">
+        <input type="text" name="fruit">
+        <input type="date" name="expiration">
+        <input type="submit" value="SEND">
+    </form>
+
+    <button id="customButton">SEND CUSTOM JS FORM</button><br>
+
+    <button id="jsonButton">SEND JSON</button>
+
+    <div id="results"></div>
+    <script>
+        // For JS Control of the secondForm.
+        const secondForm = document.getElementById("second");
+        secondForm.addEventListener("submit", function (evt) {
+            // console.log("WAHOO");
+            let requestArr = [
+                "fruit=" + document.querySelector("#second [type=text]").value,
+                "expiration=" + document.querySelector("#second [type=date]").value
+            ];
+
+            const myApi = new XMLHttpRequest();
+            myApi.open("POST", "firstpost.php");
+            myApi.addEventListener("load", function () {
+                document.getElementById("results").innerHTML = myApi.responseText;
+            });
+            myApi.send(new URLSearchParams(requestArr.join("&")));
+
+            evt.preventDefault();
+        });
+
+        // For the Custom JS Form button.
+        document.querySelector("#customButton").addEventListener("click", function () {
+            let customForm = new FormData();
+            customForm.append("fruit", "peaches");
+            customForm.append("expiration", "2023-12-31");
+
+            const myApi = new XMLHttpRequest();
+            myApi.open("POST", "firstpost.php");
+            myApi.addEventListener("load", function () {
+                document.getElementById("results").innerHTML = myApi.responseText;
+            });
+            myApi.send(customForm);
+        });
+
+        // For sending JSON
+        document.querySelector("#jsonButton").addEventListener("click", function () {
+            let customObj = {
+                fruit: "apples",
+                expiration: "2023-12-13"
+            }
+            let customJson = JSON.stringify(customObj);
+
+            // const myApi = new XMLHttpRequest();
+            // myApi.open("POST", "jsonpost.php");
+            // myApi.setRequestHeader("Content-Type", "application/json");
+            // myApi.addEventListener("load", function () {
+            //     let retObj = JSON.parse(myApi.responseText);
+            //     document.getElementById("results").innerHTML = retObj.message;
+            // });
+            // myApi.send(customJson);
+
+            fetch("jsonpost.php", {
+                method: "POST",
+                headers: { "Content-type": "application/json" },
+                body: customJson,
+            })
+                .then(res => res.json())
+                .then(res => document.getElementById("results").innerHTML = res.message)
+                .catch(err => console.error("BOOM:", err));
+        });
+
+    </script>
+</body>
+
+</html>
