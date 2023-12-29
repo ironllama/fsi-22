@@ -1,0 +1,2 @@
+When a user confirms a valid reservation, provide a reservation code. The code is a 8 character alphanumeric string
+that the user can use any time in the future to recall the reservation and change or cancel the reservation.

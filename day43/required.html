@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form method="GET">
+        <input id="fname" name="fname" type="text" required />
+        <input id="hideName" type="button" />
+        <input type="text" name="email" required />
+        <!-- <button>Done</button> -->
+        <input type="submit" value="GO" />
+        <input id="inFname" type="hidden" name="inFname" />
+    </form>
+    <script>
+        hideName.addEventListener("click", function () {
+            inFname.value = fname.value;
+            fname.style.display = "none";
+        });
+    </script>
+</body>
+
+</html>
