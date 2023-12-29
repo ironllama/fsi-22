@@ -1,0 +1,43 @@
+Use Case Document
+    Introduction to Restaurant
+    Reservation
+        How will you show the resources available?
+        Reservation:
+            Prereq: None
+            Steps:
+                - Display a calendar with open times, with the number of open tables per day
+                - Once a user selects a time, they can select an available table
+                - A user selects an available table and the UI requests some information:
+                - Required information includes: name, size of group, contact information.
+                - UI will verify the size of the group against the size of the table.
+            Alternate Step:
+                - No more tables -- Show the soonest available date with open tables.
+                - Closed -- Provide open hours information.
+                - If the group size is larger than the table size -- The UI does not allow reservations
+                    for groups larger than the table size, and suggests an alternate table. If an alternate
+                    table does not exist, it suggests to call the restaurant directly for more assistance.
+            Post Conditions:
+                - The table is registered for the reserved time and other future users will see this
+                    table as taken (greyed out) and not be able to reserve the table for that day/time.
+
+API Schema/ERD (database table design) -- data structures to contain your persistent or transfered data
+
+UI Design / Wireframe
+
+Restaurant
+    Limited:
+        number of tables
+        limited chairs
+        hours of operation
+        (amount of food)
+    Users
+        name
+        number of guests
+        contact (phone?)
+    Groups(?)
+    About
+        name
+        address
+        hours of operation
+        phone number
+    
